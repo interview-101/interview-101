@@ -1,0 +1,79 @@
+[
+  {
+    "name": "通用知识",
+    "icon": "align-right",
+    "categories": [
+      {
+        "name": "设计模式",
+        "file": "common/design-pattern.md"
+      },
+      {
+        "name": "网络",
+        "file": "common/network.md"
+      }
+    ]
+  },
+  {
+    "name": "前端基础",
+    "icon": "code",
+    "categories": [
+      {
+        "name": "JavaScript 基础",
+        "file": "basic/javascript.md"
+      },
+      {
+        "name": "CSS 基础",
+        "file": "basic/css.md"
+      },
+      {
+        "name": "ES6+",
+        "file": "basic/esnext.md"
+      },
+      {
+        "name": "Web 存储",
+        "file": "basic/web_storage.md"
+      },
+      {
+        "name": "浏览器缓存",
+        "file": "basic/cache.md"
+      },
+      {
+        "name": "性能优化",
+        "file": "basic/performance.md"
+      },
+      {
+        "name": "同源策略",
+        "file": "basic/same-origin-policy.md"
+      },
+      {
+        "name": "事件循环",
+        "file": "basic/event-loop.md"
+      }
+    ]
+  },
+  {
+    "name": "前端高级",
+    "icon": "crown"
+  },
+  {
+    "name": "NodeJS",
+    "icon": "nodejs"
+  },
+
+  {
+    "name": "学习能力",
+    "icon": "experiment"
+  },
+  {
+    "name": "思维方式",
+    "icon": "bulb"
+  },
+  {
+    "name": "问题解决能力",
+    "icon": "thunderbolt"
+  },
+  {
+    "name": "沟通能力",
+    "icon": "smile"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "name": "interview",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html --no-cache"
+  },
+  "author": "fengzilong <feng_zilong@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.5.17",
+    "vue-hot-reload-api": "^2.3.0",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.2.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-vue": "^2.0.2",
+    "less": "^3.8.1",
+    "vue-loader": "^15.4.2",
+    "vue-template-compiler": "^2.6.6"
+  }
+}

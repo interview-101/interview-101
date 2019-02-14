@@ -1,0 +1,7 @@
+node_modules
+/.git
+yarn-error.log
+.cache
+dist
+/client/src/data.json
+etc

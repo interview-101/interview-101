@@ -1,0 +1,20 @@
+{
+  "name": "interview-101",
+  "private": true,
+  "version": "0.0.0",
+  "author": "fengzilong <feng_zilong@163.com>",
+  "scripts": {
+    "start": "nps"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "gh-pages": "^2.0.1",
+    "hash-sum": "^1.0.2",
+    "marked": "^0.5.1",
+    "mz": "^2.7.0",
+    "nps": "^5.9.3",
+    "nps-utils": "^1.7.0",
+    "onchange": "^5.0.2",
+    "prismjs": "^1.15.0"
+  }
+}
