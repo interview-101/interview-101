@@ -30,6 +30,6 @@ module.exports = {
 
     ghpages: 'gh-pages -d ./client/dist',
 
-    deploy: 'nps data.build && nps client.build && nps ghpages'
+    deploy: 'cp CNAME ./client/dist/CNAME && nps data.build && nps client.build && nps ghpages'
   }
 }
