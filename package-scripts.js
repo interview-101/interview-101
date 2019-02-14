@@ -22,9 +22,14 @@ module.exports = {
     client: {
       watch: {
         default: 'npm run dev --prefix ./client'
+      },
+      build: {
+        default: 'npm run build --prefix ./client'
       }
     },
 
-    deploy: 'gh-pages -d ./client/dist'
+    ghpages: 'gh-pages -d ./client/dist',
+
+    deploy: 'nps data.build && nps client.build && nps ghpages'
   }
 }
