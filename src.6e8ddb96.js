@@ -103,7 +103,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({10:[function(require,module,exports) {
+})({12:[function(require,module,exports) {
 var global = arguments[3];
 'use strict';
 
@@ -7736,7 +7736,7 @@ if (inBrowser) {
 /*  */
 
 exports.default = Vue;
-},{}],12:[function(require,module,exports) {
+},{}],10:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -10307,7 +10307,17 @@ module.exports = [{
       "question": "介绍下 http 2.0 中的多路复用",
       "question_body": "",
       "answer": ""
-    }, {
+    }]
+  }, {
+    "name": "算法",
+    "file": "common/algorithm.md",
+    "id": "41a96538",
+    "questions": []
+  }, {
+    "name": "综合",
+    "file": "common/other.md",
+    "id": "93aecbba",
+    "questions": [{
       "question": "从输入 URL 到页面加载完成，发生了什么？",
       "question_body": "",
       "answer": "<ol>\n<li>DNS 查询</li>\n<li>建立 TCP 连接</li>\n<li>...</li>\n</ol>\n"
@@ -10319,8 +10329,8 @@ module.exports = [{
   "icon": "code",
   "categories": [{
     "name": "JavaScript 基础",
-    "file": "basic/javascript.md",
-    "id": "11275c3e",
+    "file": "junior/javascript.md",
+    "id": "3f8bf3c8",
     "questions": [{
       "question": "JavaScript 中有哪些内置类型",
       "question_body": "",
@@ -10348,8 +10358,8 @@ module.exports = [{
     }]
   }, {
     "name": "CSS 基础",
-    "file": "basic/css.md",
-    "id": "44a13d59",
+    "file": "junior/css.md",
+    "id": "838e3d5c",
     "questions": [{
       "question": "css 选择器有哪些？",
       "question_body": "",
@@ -10369,8 +10379,8 @@ module.exports = [{
     }]
   }, {
     "name": "ES6+",
-    "file": "basic/esnext.md",
-    "id": "06295aad",
+    "file": "junior/esnext.md",
+    "id": "4887efd8",
     "questions": [{
       "question": "箭头函数和普通函数有什么区别",
       "question_body": "",
@@ -10382,8 +10392,8 @@ module.exports = [{
     }]
   }, {
     "name": "Web 存储",
-    "file": "basic/web_storage.md",
-    "id": "70e9dea8",
+    "file": "junior/web_storage.md",
+    "id": "f940a8b6",
     "questions": [{
       "question": "localStorage / sessionStorage 的区别？",
       "question_body": "",
@@ -10403,8 +10413,8 @@ module.exports = [{
     }]
   }, {
     "name": "浏览器缓存",
-    "file": "basic/cache.md",
-    "id": "5e12ec8c",
+    "file": "junior/cache.md",
+    "id": "43351373",
     "questions": [{
       "question": "常见的缓存类型",
       "question_body": "",
@@ -10414,7 +10424,7 @@ module.exports = [{
       "question_body": "",
       "answer": "<p>自上而下，找到则返回，否则继续</p>\n<ol>\n<li>Service Worker</li>\n<li>Memory Cache</li>\n<li>Disk Cache</li>\n<li>(网络请求)</li>\n</ol>\n"
     }, {
-      "question": "如何区分强缓存和协商缓存",
+      "question": "如何区分强制缓存和协商缓存",
       "question_body": "",
       "answer": "<ul>\n<li>200(from cache)：强制缓存</li>\n<li>304(Not Modified)：协商缓存</li>\n</ul>\n"
     }, {
@@ -10422,15 +10432,15 @@ module.exports = [{
       "question_body": "",
       "answer": "<p>Cache from Memory 是浏览器自身的优化行为，它不受 HTTP 协议头控制（no-store是例外）；\nCache from Disk 才是我们平时提到的 HTTP Cache；</p>\n"
     }, {
-      "question": "Cache-Control 的配置决策树",
+      "question": "Cache-Control 的配置决策",
       "question_body": "",
       "answer": "<p>\n  <img width=\"400\" src=\"https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/images/http-cache-decision-tree.png\" alt=\"http-cache-decision-tree\">\n</p>\n\n"
     }, {
-      "question": "缓存相关的 headers，以及他们是如何生效的",
+      "question": "说下缓存相关的 headers，以及他们的作用",
       "question_body": "",
       "answer": "<ul>\n<li><p><strong>Cache-Control</strong> (HTTP/1.1)</p>\n<p>定义缓存策略，比如何时可以缓存/可以缓存多久</p>\n<p><strong>可缓存性：</strong></p>\n<ul>\n<li>no-cache: 每次需要先和服务器通信，确认资源未发生变化（如果存在ETag），才允许使用之前的缓存</li>\n<li>no-store: 不允许缓存响应，每次请求都必须完整获取</li>\n<li>public: 可以被浏览器或中间存储缓存（即使存在 HTTP 身份验证）</li>\n<li>private: 可以被浏览器缓存，但不能被中间存储缓存（比如 CDN）</li>\n</ul>\n<p><strong>过期时间：</strong></p>\n<ul>\n<li>max-age: 单位秒，比如 <code>max-age: 120</code> 表示可缓存120s</li>\n</ul>\n</li>\n<li><p><strong>ETag</strong></p>\n<p>资源更新检查</p>\n<p>第一次浏览器会拿到ETag，如果缓存过期，会在<code>If-None-Match</code>的header带上ETag的值，和服务器确认资源是否发生变化，如果未发生变化，服务器会响应<code>304 Not Modified</code>，可以再延用max-age时间的缓存</p>\n<p>我们要做的是确保服务端返回ETag header，后续的事情浏览器会替我们完成</p>\n</li>\n</ul>\n"
     }, {
-      "question": "如何让客户端更新被缓存的资源",
+      "question": "如何让客户端更新被缓存的资源？",
       "question_body": "",
       "answer": "<p>如果资源被客户端缓存，在缓存失效前，在不更改资源网址的情况下，是没办法做到的，所以我们在资源内容发生变化时，需要更改它的网址，强制用户重新下载</p>\n"
     }, {
@@ -10448,8 +10458,8 @@ module.exports = [{
     }]
   }, {
     "name": "性能优化",
-    "file": "basic/performance.md",
-    "id": "1ddd05e8",
+    "file": "junior/performance.md",
+    "id": "a633cff6",
     "questions": [{
       "question": "可以从哪些方面进行前端页面性能优化",
       "question_body": "",
@@ -10457,8 +10467,8 @@ module.exports = [{
     }]
   }, {
     "name": "同源策略",
-    "file": "basic/same-origin-policy.md",
-    "id": "0722b39c",
+    "file": "junior/same-origin-policy.md",
+    "id": "d85d02fa",
     "questions": [{
       "question": "如何判断同源？",
       "question_body": "",
@@ -10486,8 +10496,8 @@ module.exports = [{
     }]
   }, {
     "name": "事件循环",
-    "file": "basic/event-loop.md",
-    "id": "26f13dd2",
+    "file": "junior/event-loop.md",
+    "id": "34a702fe",
     "questions": [{
       "question": "描述下事件循环机制",
       "question_body": "",
@@ -10498,6 +10508,38 @@ module.exports = [{
 }, {
   "name": "前端高级",
   "icon": "crown",
+  "categories": [{
+    "name": "vue",
+    "file": "senior/vue.md",
+    "id": "7388a8f0",
+    "questions": [{
+      "question": "为什么vue中推荐@click的写法，之前不是一直不推荐么？",
+      "question_body": "",
+      "answer": "<p>全局，维护性问题</p>\n"
+    }]
+  }, {
+    "name": "webpack",
+    "file": "senior/webpack.md",
+    "id": "ad63f07e",
+    "questions": [{
+      "question": "常见的 plugins 有哪些？",
+      "question_body": "",
+      "answer": ""
+    }, {
+      "question": "file-loader / url-loader 如何选择？",
+      "question_body": "",
+      "answer": ""
+    }]
+  }, {
+    "name": "综合",
+    "file": "senior/other.md",
+    "id": "2217937e",
+    "questions": [{
+      "question": "怎么看前后端分离？",
+      "question_body": "",
+      "answer": "<p>准确地说应该是前后端分层，前后端分层的目的是前后端工作的分层协同</p>\n"
+    }]
+  }],
   "id": "543dc987"
 }, {
   "name": "NodeJS",
@@ -10520,7 +10562,7 @@ module.exports = [{
   "icon": "smile",
   "id": "6080decf"
 }];
-},{}],14:[function(require,module,exports) {
+},{}],16:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -10583,7 +10625,7 @@ var staticRenderFns = []
           };
         })());
       
-},{"../components/Category":33,"../data.json":31}],16:[function(require,module,exports) {
+},{"../components/Category":33,"../data.json":31}],14:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -10719,5 +10761,5 @@ var app = new _vue2.default({
     return h('router-view');
   }
 });
-},{"vue":10,"vue-router":12,"prismjs/themes/prism-tomorrow.css":8,"./pages/Categories":14,"./pages/Questions":16,"./css/global.less":8}]},{},[4], null)
+},{"vue":12,"vue-router":10,"prismjs/themes/prism-tomorrow.css":8,"./pages/Categories":16,"./pages/Questions":14,"./css/global.less":8}]},{},[4], null)
 //# sourceMappingURL=src.9625100a.map
