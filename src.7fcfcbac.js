@@ -103,7 +103,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({10:[function(require,module,exports) {
+})({8:[function(require,module,exports) {
 var global = arguments[3];
 'use strict';
 
@@ -7736,7 +7736,7 @@ if (inBrowser) {
 /*  */
 
 exports.default = Vue;
-},{}],8:[function(require,module,exports) {
+},{}],10:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -10219,7 +10219,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],22:[function(require,module,exports) {
+},{}],23:[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -10256,7 +10256,7 @@ module.exports = reloadCSS;
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":22}],40:[function(require,module,exports) {
+},{"_css_loader":23}],40:[function(require,module,exports) {
 var Vue // late bind
 var version
 var map = (window.__VUE_HOT_MAP__ = Object.create(null))
@@ -10651,7 +10651,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":22,"vue-hot-reload-api":40,"vue":10}],35:[function(require,module,exports) {
+},{"_css_loader":23,"vue-hot-reload-api":40,"vue":8}],35:[function(require,module,exports) {
 module.exports = [{
   "name": "通用知识",
   "icon": "align-right",
@@ -10751,11 +10751,11 @@ module.exports = [{
     "questions": [{
       "question": "箭头函数和普通函数有什么区别",
       "question_body": "",
-      "answer": ""
+      "answer": "<ul>\n<li>没有自己的 this，使用 call / apply / bind 时第一个参数会被忽略</li>\n<li>没有 arguments</li>\n<li>不能用作构造函数，无法 new，无 prototype</li>\n<li>不能用来定义 generator（内部不能使用yield）</li>\n</ul>\n"
     }, {
       "question": "描述下暂时性死区（Temporal Dead Zone）",
       "question_body": "",
-      "answer": "<pre class=\"language-js\"><code class=\"language-js\"></code></pre>\n"
+      "answer": "<pre class=\"language-js\"><code class=\"language-js\"><span class=\"token keyword\">function</span> <span class=\"token function\">do_something</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n  console<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span> bar <span class=\"token punctuation\">)</span> <span class=\"token comment\">// undefined</span>\n  console<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span> foo <span class=\"token punctuation\">)</span> <span class=\"token comment\">// ReferenceError</span>\n  <span class=\"token keyword\">var</span> bar <span class=\"token operator\">=</span> <span class=\"token number\">1</span>\n  <span class=\"token keyword\">let</span> foo <span class=\"token operator\">=</span> <span class=\"token number\">2</span>\n<span class=\"token punctuation\">}</span></code></pre>\n<p>let 没有变量提升，在声明执行前，访问使用 let 定义的变量，会导致一个 ReferenceError（const 也一样）</p>\n"
     }]
   }, {
     "name": "Web 存储",
@@ -10995,7 +10995,7 @@ render._withStripped = true
       
       }
     })();
-},{"../components/Category":37,"../data.json":35,"_css_loader":22,"vue-hot-reload-api":40,"vue":10}],16:[function(require,module,exports) {
+},{"../components/Category":37,"../data.json":35,"_css_loader":23,"vue-hot-reload-api":40,"vue":8}],16:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11156,12 +11156,12 @@ render._withStripped = true
       
       }
     })();
-},{"../data.json":35,"_css_loader":22,"vue-hot-reload-api":40,"vue":10}],6:[function(require,module,exports) {
+},{"../data.json":35,"_css_loader":23,"vue-hot-reload-api":40,"vue":8}],6:[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":22}],4:[function(require,module,exports) {
+},{"_css_loader":23}],4:[function(require,module,exports) {
 'use strict';
 
 var _vue = require('vue');
@@ -11208,7 +11208,7 @@ var app = new _vue2.default({
     return h('router-view');
   }
 });
-},{"vue":10,"vue-router":8,"prismjs/themes/prism-tomorrow.css":12,"./pages/Categories":14,"./pages/Questions":16,"./css/global.less":6}],47:[function(require,module,exports) {
+},{"vue":8,"vue-router":10,"prismjs/themes/prism-tomorrow.css":12,"./pages/Categories":14,"./pages/Questions":16,"./css/global.less":6}],47:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -11237,7 +11237,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '53102' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51178' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -11379,4 +11379,4 @@ function hmrAccept(bundle, id) {
   });
 }
 },{}]},{},[47,4], null)
-//# sourceMappingURL=/src.7fcfcbac.map
+//# sourceMappingURL=src.7fcfcbac.map
