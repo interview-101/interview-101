@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/index.html --no-cache --public-url=./",
-    "build": "parcel build src/index.html --no-cache --public-url=./"
+    "build": "parcel build src/index.html --no-cache --public-url=./ --no-minify"
   },
   "author": "fengzilong <feng_zilong@163.com>",
   "license": "MIT",
