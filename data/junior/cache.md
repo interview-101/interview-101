@@ -20,7 +20,7 @@
 3. Disk Cache
 4. (网络请求)
 
-# 如何区分强缓存和协商缓存
+# 如何区分强制缓存和协商缓存
 
 - 200(from cache)：强制缓存
 - 304(Not Modified)：协商缓存
@@ -30,13 +30,13 @@
 Cache from Memory 是浏览器自身的优化行为，它不受 HTTP 协议头控制（no-store是例外）；
 Cache from Disk 才是我们平时提到的 HTTP Cache；
 
-# Cache-Control 的配置决策树
+# Cache-Control 的配置决策
 
 <p>
   <img width="400" src="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/images/http-cache-decision-tree.png" alt="http-cache-decision-tree">
 </p>
 
-# 缓存相关的 headers，以及他们是如何生效的
+# 说下缓存相关的 headers，以及他们的作用
 
 - **Cache-Control** (HTTP/1.1)
 
@@ -61,7 +61,7 @@ Cache from Disk 才是我们平时提到的 HTTP Cache；
 
   我们要做的是确保服务端返回ETag header，后续的事情浏览器会替我们完成
 
-# 如何让客户端更新被缓存的资源
+# 如何让客户端更新被缓存的资源？
 
 如果资源被客户端缓存，在缓存失效前，在不更改资源网址的情况下，是没办法做到的，所以我们在资源内容发生变化时，需要更改它的网址，强制用户重新下载
 

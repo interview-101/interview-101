@@ -10,6 +10,14 @@
       {
         "name": "网络",
         "file": "common/network.md"
+      },
+      {
+        "name": "算法",
+        "file": "common/algorithm.md"
+      },
+      {
+        "name": "综合",
+        "file": "common/other.md"
       }
     ]
   },
@@ -19,41 +27,55 @@
     "categories": [
       {
         "name": "JavaScript 基础",
-        "file": "basic/javascript.md"
+        "file": "junior/javascript.md"
       },
       {
         "name": "CSS 基础",
-        "file": "basic/css.md"
+        "file": "junior/css.md"
       },
       {
         "name": "ES6+",
-        "file": "basic/esnext.md"
+        "file": "junior/esnext.md"
       },
       {
         "name": "Web 存储",
-        "file": "basic/web_storage.md"
+        "file": "junior/web_storage.md"
       },
       {
         "name": "浏览器缓存",
-        "file": "basic/cache.md"
+        "file": "junior/cache.md"
       },
       {
         "name": "性能优化",
-        "file": "basic/performance.md"
+        "file": "junior/performance.md"
       },
       {
         "name": "同源策略",
-        "file": "basic/same-origin-policy.md"
+        "file": "junior/same-origin-policy.md"
       },
       {
         "name": "事件循环",
-        "file": "basic/event-loop.md"
+        "file": "junior/event-loop.md"
       }
     ]
   },
   {
     "name": "前端高级",
-    "icon": "crown"
+    "icon": "crown",
+    "categories": [
+      {
+        "name": "vue",
+        "file": "senior/vue.md"
+      },
+      {
+        "name": "webpack",
+        "file": "senior/webpack.md"
+      },
+      {
+        "name": "综合",
+        "file": "senior/other.md"
+      }
+    ]
   },
   {
     "name": "NodeJS",
