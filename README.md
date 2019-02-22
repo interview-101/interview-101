@@ -1,6 +1,6 @@
 <img src="https://i.imgur.com/rQ69ix5.png" width="100" align="right" />
 
-# interview-101
+# Interview 101
 
 ## Why
 
