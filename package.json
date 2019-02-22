@@ -2,11 +2,14 @@
   "name": "interview-101",
   "private": true,
   "version": "0.0.0",
-  "author": "fengzilong <feng_zilong@163.com>",
   "scripts": {
     "start": "nps",
     "deploy": "nps deploy"
   },
+  "maintainers": [
+    "fengzilong <feng_zilong@163.com>",
+    "ann <https://github.com/AnnVoV>"
+  ],
   "license": "MIT",
   "devDependencies": {
     "gh-pages": "^2.0.1",
