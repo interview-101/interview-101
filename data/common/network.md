@@ -27,6 +27,6 @@
 
 # HTTP/2 服务器推送（Server Push）？
 
-服务器发送完 HTML 的响应后，需要等待浏览器解析 HTML 发起内嵌资源的请求，才会响应 JavaScript、CSS、images，Server Push 允许服务器提前推送这些资源到浏览器的缓存中，消除了等待时间
+服务器发送 HTML 后，需要等待浏览器解析 HTML 后发起内嵌资源的请求，才会响应 JavaScript、CSS、images 等资源，Server Push 允许服务器提前推送这些资源到浏览器的缓存中，消除了中间的等待时间
 
 > [HTTP/2 FAQ](https://http2.github.io/faq/)
