@@ -2,23 +2,51 @@
 
 # Interview 101
 
+## Categories
+
+- 通用知识
+  - 设计模式
+  - 网络
+  - 算法
+  - 综合
+- 前端基础
+  - JavaScript 基础
+  - CSS 基础
+  - ES6+
+  - Web 存储
+  - 浏览器缓存
+  - 性能优化
+  - 同源策略
+  - 事件循环
+  - 综合
+- 前端高级
+  - vue
+  - webpack
+  - 综合
+- NodeJS
+- 学习能力
+- 思维方式
+- 问题解决能力
+- 沟通能力
+
+
 ## Development
 
-安装依赖
+Installation
 
 ```bash
 npm i
 cd client && npm i
 ```
 
-开发
+Develop
 
 ```bash
 npm start
 # Open http://localhost:1234/
 ```
 
-部署
+Deploy
 
 ```bash
 npm run deploy
