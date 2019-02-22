@@ -58,8 +58,10 @@
 
 <style lang="less">
   .category {
+    width: 640px;
+
     &__title {
-      width: 640px;
+      width: 100%;
       height: 70px;
       padding: 0 29px;
       display: flex;

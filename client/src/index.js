@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import 'prismjs/themes/prism-tomorrow.css'
+import Home from './pages/Home'
 import Categories from './pages/Categories'
 import Questions from './pages/Questions'
 import './css/global.less'
@@ -12,6 +13,11 @@ const router = new VueRouter( {
     {
       name: 'home',
       path: '/',
+      component: Home,
+    },
+    {
+      name: 'categories',
+      path: '/categories',
       component: Categories,
     },
     {

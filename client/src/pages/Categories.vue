@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="categories">
     <div>
       <Category
         v-for="( page, page_index ) in pages"
@@ -29,13 +29,11 @@
   }
 </script>
 
-<style lang="less">
-  html {
-    background-color: #f2f2f2;
-  }
-  .app {
+<style lang="less" scoped>
+  .categories {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     padding: 50px 0;
   }
 </style>

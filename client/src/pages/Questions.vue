@@ -50,17 +50,13 @@ export default {
   },
   methods: {
     onHome() {
-      this.$router.push( { name: 'home' } )
+      this.$router.push( { name: 'categories' } )
     },
   }
 }
 </script>
 
-<style lang="less">
-  body {
-    margin: 0;
-  }
-
+<style lang="less" scoped>
   .questions {
     width: 700px;
     min-height: 100%;
