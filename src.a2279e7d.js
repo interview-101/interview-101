@@ -11050,6 +11050,57 @@ var _default = VueRouter;
 exports.default = _default;
 },{}],"WdpE":[function(require,module,exports) {
 
+},{}],"+lUt":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  methods: {
+    onLucky: function onLucky() {
+      console.log('TODO: popup a question');
+    }
+  }
+};
+exports.default = _default;
+        var $830572 = exports.default || module.exports;
+      
+      if (typeof $830572 === 'function') {
+        $830572 = $830572.options;
+      }
+    
+        /* template */
+        Object.assign($830572, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"home"},[_c('div',{staticClass:"content"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"buttons"},[_c('a',{staticClass:"button",attrs:{"href":"#/categories"}},[_vm._v("See All Questions")]),_vm._v(" "),_c('a',{staticClass:"button lucky",on:{"click":_vm.onLucky}},[_vm._v("I'm Feeling Lucky")])])])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"logo"},[_c('img',{attrs:{"src":"https://i.imgur.com/rQ69ix5.png","alt":""}}),_vm._v(" "),_c('div',{staticClass:"name"},[_vm._v("Interview 101")])])}]
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-830572",
+            functional: undefined
+          };
+        })());
+      
 },{}],"TU+R":[function(require,module,exports) {
 "use strict";
 
@@ -11472,14 +11523,14 @@ exports.default = _default;
     
         /* template */
         Object.assign($68ad0a, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app"},[_c('div',_vm._l((_vm.pages),function(page,page_index){return _c('Category',{attrs:{"page":page}})}),1)])}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"categories"},[_c('div',_vm._l((_vm.pages),function(page,page_index){return _c('Category',{attrs:{"page":page}})}),1)])}
 var staticRenderFns = []
 
           return {
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-68ad0a",
             functional: undefined
           };
         })());
@@ -11548,7 +11599,7 @@ var _default = {
   methods: {
     onHome: function onHome() {
       this.$router.push({
-        name: 'home'
+        name: 'categories'
       });
     }
   }
@@ -11569,7 +11620,7 @@ var staticRenderFns = []
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-8a1de4",
             functional: undefined
           };
         })());
@@ -11582,6 +11633,8 @@ var _vue = _interopRequireDefault(require("vue"));
 var _vueRouter = _interopRequireDefault(require("vue-router"));
 
 require("prismjs/themes/prism-tomorrow.css");
+
+var _Home = _interopRequireDefault(require("./pages/Home"));
 
 var _Categories = _interopRequireDefault(require("./pages/Categories"));
 
@@ -11597,6 +11650,10 @@ var router = new _vueRouter.default({
   routes: [{
     name: 'home',
     path: '/',
+    component: _Home.default
+  }, {
+    name: 'categories',
+    path: '/categories',
     component: _Categories.default
   }, {
     path: '/questions/:pid/:cid',
@@ -11611,5 +11668,5 @@ var app = new _vue.default({
     return h("router-view");
   }
 });
-},{"vue":"QPfz","vue-router":"7ov2","prismjs/themes/prism-tomorrow.css":"WdpE","./pages/Categories":"ezLQ","./pages/Questions":"reR6","./css/global.less":"WdpE"}]},{},["Focm"], null)
-//# sourceMappingURL=src.eef989a1.map
+},{"vue":"QPfz","vue-router":"7ov2","prismjs/themes/prism-tomorrow.css":"WdpE","./pages/Home":"+lUt","./pages/Categories":"ezLQ","./pages/Questions":"reR6","./css/global.less":"WdpE"}]},{},["Focm"], null)
+//# sourceMappingURL=src.ea78d8dd.map

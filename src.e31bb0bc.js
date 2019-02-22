@@ -11363,7 +11363,110 @@ exports.reload = tryWrap(function (id, options) {
   })
 })
 
-},{}],"components/Category.vue":[function(require,module,exports) {
+},{}],"pages/Home.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  methods: {
+    onLucky: function onLucky() {
+      console.log('TODO: popup a question');
+    }
+  }
+};
+exports.default = _default;
+        var $830572 = exports.default || module.exports;
+      
+      if (typeof $830572 === 'function') {
+        $830572 = $830572.options;
+      }
+    
+        /* template */
+        Object.assign($830572, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "home" }, [
+    _c("div", { staticClass: "content" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "buttons" }, [
+        _c("a", { staticClass: "button", attrs: { href: "#/categories" } }, [
+          _vm._v("See All Questions")
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "button lucky", on: { click: _vm.onLucky } }, [
+          _vm._v("I'm Feeling Lucky")
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "logo" }, [
+      _c("img", { attrs: { src: "https://i.imgur.com/rQ69ix5.png", alt: "" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "name" }, [_vm._v("Interview 101")])
+    ])
+  }
+]
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-830572",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$830572', $830572);
+          } else {
+            api.reload('$830572', $830572);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/Category.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11859,7 +11962,7 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "app" }, [
+  return _c("div", { staticClass: "categories" }, [
     _c(
       "div",
       _vm._l(_vm.pages, function(page, page_index) {
@@ -11876,7 +11979,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-68ad0a",
             functional: undefined
           };
         })());
@@ -11966,7 +12069,7 @@ var _default = {
   methods: {
     onHome: function onHome() {
       this.$router.push({
-        name: 'home'
+        name: 'categories'
       });
     }
   }
@@ -12038,7 +12141,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-8a1de4",
             functional: undefined
           };
         })());
@@ -12078,6 +12181,8 @@ var _vueRouter = _interopRequireDefault(require("vue-router"));
 
 require("prismjs/themes/prism-tomorrow.css");
 
+var _Home = _interopRequireDefault(require("./pages/Home"));
+
 var _Categories = _interopRequireDefault(require("./pages/Categories"));
 
 var _Questions = _interopRequireDefault(require("./pages/Questions"));
@@ -12092,6 +12197,10 @@ var router = new _vueRouter.default({
   routes: [{
     name: 'home',
     path: '/',
+    component: _Home.default
+  }, {
+    name: 'categories',
+    path: '/categories',
     component: _Categories.default
   }, {
     path: '/questions/:pid/:cid',
@@ -12106,7 +12215,7 @@ var app = new _vue.default({
     return h("router-view");
   }
 });
-},{"vue":"../node_modules/vue/dist/vue.runtime.esm.js","vue-router":"../node_modules/vue-router/dist/vue-router.esm.js","prismjs/themes/prism-tomorrow.css":"../../node_modules/prismjs/themes/prism-tomorrow.css","./pages/Categories":"pages/Categories.vue","./pages/Questions":"pages/Questions.vue","./css/global.less":"css/global.less"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"../node_modules/vue/dist/vue.runtime.esm.js","vue-router":"../node_modules/vue-router/dist/vue-router.esm.js","prismjs/themes/prism-tomorrow.css":"../../node_modules/prismjs/themes/prism-tomorrow.css","./pages/Home":"pages/Home.vue","./pages/Categories":"pages/Categories.vue","./pages/Questions":"pages/Questions.vue","./css/global.less":"css/global.less"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -12133,7 +12242,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60282" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52693" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
