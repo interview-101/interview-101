@@ -236,12 +236,6 @@ pre[class*="language-"],
 code {
   font-family: 'Source Code Pro', monospace;
 }
-ul {
-  padding-left: 30px;
-}
-img {
-  max-width: 100%;
-}
 .iconfont {
   font-size: 19px;
 }
@@ -333,6 +327,37 @@ p {
 }
 a {
   color: #db498a;
+}
+img {
+  max-width: 100%;
+}
+ul {
+  padding-left: 30px;
+}
+ul li {
+  list-style-type: square;
+}
+ol {
+  list-style: none;
+  counter-reset: counter;
+  padding-left: 10px;
+}
+ol li {
+  counter-increment: counter;
+}
+ol li::before {
+  content: counter(counter);
+  font-weight: bold;
+  margin-right: 10px;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  background-color: #db498a;
+  color: #fff;
+  display: inline-block;
+  font-size: 11px;
 }
 blockquote {
   border-left: solid 2px #eaeaea;
