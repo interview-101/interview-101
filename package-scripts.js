@@ -16,10 +16,17 @@ module.exports = {
       },
       build: {
         default: {
-          script: 'node scripts/build-json-from-data',
+          script: 'node scripts/data-to-json',
           description: 'Parse markdown files to json'
         }
       },
+
+      sync2readme: {
+        default: {
+          script: 'node scripts/sync-category.js',
+          description: 'Sync categories to README.md'
+        }
+      }
     },
 
     client: {

@@ -4,31 +4,31 @@
 
 ## Categories
 
-- 通用知识
-  - 设计模式
-  - 网络
-  - 算法
-  - 综合
-- 前端基础
-  - JavaScript 基础
-  - CSS 基础
-  - ES6+
-  - Web 存储
-  - 浏览器缓存
-  - 性能优化
-  - 同源策略
-  - 事件循环
-  - 综合
-- 前端高级
-  - vue
-  - webpack
-  - 综合
-- NodeJS
-- 学习能力
-- 思维方式
-- 问题解决能力
-- 沟通能力
-
+<!-- TOC START -->
+- [通用知识](https://interview.js.org)
+  - [设计模式](https://interview.js.org/#/questions/703bbe45/5bb84214)
+  - [网络](https://interview.js.org/#/questions/703bbe45/810a0276)
+  - [算法](https://interview.js.org/#/questions/703bbe45/41a96538)
+  - [综合](https://interview.js.org/#/questions/703bbe45/93aecbba)
+- [前端基础](https://interview.js.org)
+  - [JavaScript 基础](https://interview.js.org/#/questions/5435aa3e/3f8bf3c8)
+  - [CSS 基础](https://interview.js.org/#/questions/5435aa3e/838e3d5c)
+  - [ES6+](https://interview.js.org/#/questions/5435aa3e/4887efd8)
+  - [Web 存储](https://interview.js.org/#/questions/5435aa3e/f940a8b6)
+  - [浏览器缓存](https://interview.js.org/#/questions/5435aa3e/43351373)
+  - [性能优化](https://interview.js.org/#/questions/5435aa3e/a633cff6)
+  - [同源策略](https://interview.js.org/#/questions/5435aa3e/d85d02fa)
+  - [事件循环](https://interview.js.org/#/questions/5435aa3e/34a702fe)
+- [前端高级](https://interview.js.org)
+  - [vue](https://interview.js.org/#/questions/543dc987/7388a8f0)
+  - [webpack](https://interview.js.org/#/questions/543dc987/ad63f07e)
+  - [综合](https://interview.js.org/#/questions/543dc987/2217937e)
+- [NodeJS](https://interview.js.org)
+- [学习能力](https://interview.js.org)
+- [思维方式](https://interview.js.org)
+- [问题解决能力](https://interview.js.org)
+- [沟通能力](https://interview.js.org)
+<!-- TOC END -->
 
 ## Development
 

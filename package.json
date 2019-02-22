@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "start": "nps",
-    "deploy": "nps deploy"
+    "deploy": "nps deploy",
+    "sync2readme": "nps data.sync2readme"
   },
   "maintainers": [
     "fengzilong <feng_zilong@163.com>",

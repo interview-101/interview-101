@@ -1,7 +1,4 @@
-const fs = require( 'mz/fs' )
-const path = require( 'path' )
 const marked = require( 'marked' )
-const hash = require( 'hash-sum' )
 const Prism = require( 'prismjs' )
 require( 'prismjs/components/prism-yaml' )
 require( 'prismjs/components/prism-bash' )
@@ -10,9 +7,6 @@ require( 'prismjs/components/prism-docker' )
 require( 'prismjs/components/prism-jsx' )
 require( 'prismjs/components/prism-less' )
 require( 'prismjs/components/prism-typescript' )
-const pages = require( '../data/config.json' )
-
-const cwd = process.cwd()
 
 function escape(html, encode) {
   if (encode) {
@@ -72,26 +66,6 @@ renderer.code = function ( code, infostring, escaped ) {
     + '</code></pre>\n'
 }
 
-main()
-
-async function main() {
-  for ( let page of pages ) {
-    page.id = hash( page.name )
-
-    const categories = page.categories || []
-
-    for ( let category of categories ) {
-      category.id = hash( category.file )
-      const realpath = path.join( cwd, 'data', category.file )
-      const buffer = await readFile( realpath )
-      const questions = await parseFile( buffer.toString() )
-      category.questions = questions
-    }
-  }
-
-  await fs.writeFile( path.join( cwd, 'client/src/data.json' ), JSON.stringify( pages, 0, 2 ) )
-}
-
 async function parseFile( content ) {
   const results = []
 
@@ -148,6 +122,4 @@ async function parseFile( content ) {
   return results
 }
 
-async function readFile( filepath ) {
-  return await fs.readFile( filepath )
-}
+module.exports = parseFile
