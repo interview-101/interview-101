@@ -62,7 +62,7 @@
 
     &__title {
       width: 100%;
-      height: 70px;
+      height: 60px;
       padding: 0 29px;
       display: flex;
       align-items: center;
