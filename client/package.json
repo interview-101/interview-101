@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/index.html --no-cache --public-url=./",
+    "dev": "parcel src/index.html --no-cache",
     "build": "parcel build src/index.html --no-cache --public-url=./ --no-minify"
   },
   "author": "fengzilong <feng_zilong@163.com>",
@@ -19,6 +19,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-vue": "^2.0.2",
     "less": "^3.8.1",
+    "parcel-bundler": "^1.11.0",
     "vue-loader": "^15.4.2",
     "vue-template-compiler": "^2.6.6"
   }

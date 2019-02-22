@@ -21,14 +21,12 @@
 Object.prototype.toString.call()
 ```
 
-```
-null -> [object Null]
-undefined -> [object Undefined]
-number -> [object Number]
-string -> [object String]
-boolean -> [object Boolean]
-symbol -> [object Symbol]
-```
+- null -> [object Null]
+- undefined -> [object Undefined]
+- number -> [object Number]
+- string -> [object String]
+- boolean -> [object Boolean]
+- symbol -> [object Symbol]
 
 # JavaScript 是如何做隐式类型转换的
 

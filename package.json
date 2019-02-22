@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "author": "fengzilong <feng_zilong@163.com>",
   "scripts": {
-    "start": "nps"
+    "start": "nps",
+    "deploy": "nps deploy"
   },
   "license": "MIT",
   "devDependencies": {
