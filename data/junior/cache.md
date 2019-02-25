@@ -9,7 +9,10 @@
 按失效策略分：
 
 - 强缓存
+    - 用Cache-Control, Expires headers来控制，特点是如果设置了对应的缓存时间，在该时间内不会发任何请求到服务器。
+
 - 协商缓存
+    - 用ETag, Last-Modified, If-None-Match headers来控制，特点是会先发一个请求给服务器验证缓存是否有效。
 
 # 缓存查找的顺序
 
@@ -63,7 +66,7 @@ Cache from Disk 才是我们平时提到的 HTTP Cache；
 
 # 如何让客户端更新被缓存的资源？
 
-如果资源被客户端缓存，在缓存失效前，在不更改资源网址的情况下，是没办法做到的，所以我们在资源内容发生变化时，需要更改它的网址，强制用户重新下载
+如果资源被客户端缓存，在缓存失效前，在不更改资源网址的情况下，是没办法做到的，所以我们在资源内容发生变化时(利用content-hash)，需要更改它的网址，强制用户重新下载
 
 # HTTP Cache 实践举例
 
@@ -75,13 +78,20 @@ Cache from Disk 才是我们平时提到的 HTTP Cache；
 
 TODO
 
+如果没有设置Cache-Control，根据规范，浏览器可能会缓存也可能不会
+
+> Unless specifically constrained by a cache-control 
+ directive, a caching system MAY always store a successful response 
+
 # Cache-Control max-age=0 和 no-cache 的关系
 
-no-cache 等价于 max-age=0, must-revalidate
+no-cache 等价于 max-age=0, must-revalidate, 意思是no-cache并不意味着不缓存，而是意味着在使用缓存之前一定要进行验证。
 
 <!--
 参考：
 https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching
 https://mp.weixin.qq.com/s/cUqkG3NETmJbglDXfSf0tg
 https://tools.ietf.org/html/rfc7234#section-5.2.1
+https://jakearchibald.com/2016/caching-best-practices/?utm_campaign=chrome_series_catchingbestpractices_072717&utm_source=chromedev&utm_medium=yt-desc
+https://www.v2ex.com/t/356353
 -->
