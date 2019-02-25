@@ -12,6 +12,10 @@
 - symbol
 - object
 
+<!--
+参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B
+-->
+
 # 如何区分 JavaScript 中的 6 大基本类型
 
 `typeof` 可以区分除了 `null` 以外的其他基本类型
