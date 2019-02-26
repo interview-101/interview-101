@@ -18,7 +18,19 @@
 
 [选择器本身是大小写不敏感的](https://www.w3.org/TR/selectors-4/#case-sensitive)，class和id是否大小写敏感，[取决于宿主语言](https://www.w3.org/TR/html50/disabled-elements.html#case-sensitivity)
 
-CSS 本身是大小写不敏感的，所以以下写法是等价的
+> The Selectors specification leaves the case-sensitivity of IDs, classes, element names, attribute names, and attribute values to be defined by the host language. [SELECTORS]
+
+> The unique identifier of HTML elements in documents that are in quirks mode must be treated as ASCII case-insensitive for the purposes of selector matching.
+
+> Classes from the class attribute of HTML elements in documents that are in quirks mode must be treated as ASCII case-insensitive for the purposes of selector matching.
+
+> When comparing a CSS element type selector to the names of HTML elements in HTML documents, the CSS element type selector must first be converted to ASCII lowercase. The same selector when compared to other elements must be compared according to its original case. In both cases, the comparison is case-sensitive.
+
+> When comparing the name part of a CSS attribute selector to the names of namespace-less attributes on HTML elements in HTML documents, the name part of the CSS attribute selector must first be converted to ASCII lowercase. The same selector when compared to other attributes must be compared according to its original case. In both cases, the comparison is case-sensitive.
+
+> Everything else (attribute values on HTML elements, IDs and classes in no-quirks mode and limited-quirks mode, and element names, attribute names, and attribute values in XML documents) must be treated as case-sensitive for the purposes of selector matching.
+
+CSS 本身是大小写不敏感的，以下写法是等价的
 
 ```css
 .klass {
@@ -77,6 +89,11 @@ html h1 {
 }
 ```
 
+最终 h1 的颜色是什么？
+
+```
+purple
+```
 
 
 ### 如何实现一个元素水平和垂直居中

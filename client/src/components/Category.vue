@@ -111,4 +111,8 @@
       font-size: 15px;
     }
   }
+
+  .iconfont {
+    font-size: 19px;
+  }
 </style>
