@@ -104,7 +104,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"../node_modules/vue/dist/vue.runtime.esm.js":[function(require,module,exports) {
+})({"QPfz":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -495,12 +495,12 @@ var config = {
   /**
    * Show production mode tip message on boot?
    */
-  productionTip: "development" !== 'production',
+  productionTip: "production" !== 'production',
 
   /**
    * Whether to enable devtools
    */
-  devtools: "development" !== 'production',
+  devtools: "production" !== 'production',
 
   /**
    * Whether to record perf
@@ -734,7 +734,7 @@ var generateComponentTrace = noop; // work around flow check
 
 var formatComponentName = noop;
 
-if ("development" !== 'production') {
+if ("production" !== 'production') {
   var hasConsole = typeof console !== 'undefined';
   var classifyRE = /(?:^|[-_])(\w)/g;
 
@@ -858,7 +858,7 @@ Dep.prototype.notify = function notify() {
   // stabilize the subscriber list first
   var subs = this.subs.slice();
 
-  if ("development" !== 'production' && !config.async) {
+  if ("production" !== 'production' && !config.async) {
     // subs aren't sorted in scheduler if not running async
     // we need to sort them now to make sure they fire in correct
     // order
@@ -1175,7 +1175,7 @@ function defineReactive$$1(obj, key, val, customSetter, shallow) {
       /* eslint-enable no-self-compare */
 
 
-      if ("development" !== 'production' && customSetter) {
+      if ("production" !== 'production' && customSetter) {
         customSetter();
       } // #7981: for accessor properties without setter
 
@@ -1203,7 +1203,7 @@ function defineReactive$$1(obj, key, val, customSetter, shallow) {
 
 
 function set(target, key, val) {
-  if ("development" !== 'production' && (isUndef(target) || isPrimitive(target))) {
+  if ("production" !== 'production' && (isUndef(target) || isPrimitive(target))) {
     warn("Cannot set reactive property on undefined, null, or primitive value: " + target);
   }
 
@@ -1221,7 +1221,7 @@ function set(target, key, val) {
   var ob = target.__ob__;
 
   if (target._isVue || ob && ob.vmCount) {
-    "development" !== 'production' && warn('Avoid adding reactive properties to a Vue instance or its root $data ' + 'at runtime - declare it upfront in the data option.');
+    "production" !== 'production' && warn('Avoid adding reactive properties to a Vue instance or its root $data ' + 'at runtime - declare it upfront in the data option.');
     return val;
   }
 
@@ -1240,7 +1240,7 @@ function set(target, key, val) {
 
 
 function del(target, key) {
-  if ("development" !== 'production' && (isUndef(target) || isPrimitive(target))) {
+  if ("production" !== 'production' && (isUndef(target) || isPrimitive(target))) {
     warn("Cannot delete reactive property on undefined, null, or primitive value: " + target);
   }
 
@@ -1252,7 +1252,7 @@ function del(target, key) {
   var ob = target.__ob__;
 
   if (target._isVue || ob && ob.vmCount) {
-    "development" !== 'production' && warn('Avoid deleting properties on a Vue instance or its root $data ' + '- just set it to null.');
+    "production" !== 'production' && warn('Avoid deleting properties on a Vue instance or its root $data ' + '- just set it to null.');
     return;
   }
 
@@ -1298,7 +1298,7 @@ var strats = config.optionMergeStrategies;
  * Options with restrictions
  */
 
-if ("development" !== 'production') {
+if ("production" !== 'production') {
   strats.el = strats.propsData = function (parent, child, vm, key) {
     if (!vm) {
       warn("option \"" + key + "\" can only be used during instance " + 'creation with the `new` keyword.');
@@ -1381,7 +1381,7 @@ function mergeDataOrFn(parentVal, childVal, vm) {
 strats.data = function (parentVal, childVal, vm) {
   if (!vm) {
     if (childVal && typeof childVal !== 'function') {
-      "development" !== 'production' && warn('The "data" option should be a function ' + 'that returns a per-instance value in component ' + 'definitions.', vm);
+      "production" !== 'production' && warn('The "data" option should be a function ' + 'that returns a per-instance value in component ' + 'definitions.', vm);
       return parentVal;
     }
 
@@ -1427,7 +1427,7 @@ function mergeAssets(parentVal, childVal, vm, key) {
   var res = Object.create(parentVal || null);
 
   if (childVal) {
-    "development" !== 'production' && assertObjectType(key, childVal, vm);
+    "production" !== 'production' && assertObjectType(key, childVal, vm);
     return extend(res, childVal);
   } else {
     return res;
@@ -1460,7 +1460,7 @@ strats.watch = function (parentVal, childVal, vm, key) {
     return Object.create(parentVal || null);
   }
 
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     assertObjectType(key, childVal, vm);
   }
 
@@ -1490,7 +1490,7 @@ strats.watch = function (parentVal, childVal, vm, key) {
 
 
 strats.props = strats.methods = strats.inject = strats.computed = function (parentVal, childVal, vm, key) {
-  if (childVal && "development" !== 'production') {
+  if (childVal && "production" !== 'production') {
     assertObjectType(key, childVal, vm);
   }
 
@@ -1563,7 +1563,7 @@ function normalizeProps(options, vm) {
         res[name] = {
           type: null
         };
-      } else if ("development" !== 'production') {
+      } else if ("production" !== 'production') {
         warn('props must be strings when using array syntax.');
       }
     }
@@ -1575,7 +1575,7 @@ function normalizeProps(options, vm) {
         type: val
       };
     }
-  } else if ("development" !== 'production') {
+  } else if ("production" !== 'production') {
     warn("Invalid value for option \"props\": expected an Array or an Object, " + "but got " + toRawType(props) + ".", vm);
   }
 
@@ -1610,7 +1610,7 @@ function normalizeInject(options, vm) {
         from: val
       };
     }
-  } else if ("development" !== 'production') {
+  } else if ("production" !== 'production') {
     warn("Invalid value for option \"inject\": expected an Array or an Object, " + "but got " + toRawType(inject) + ".", vm);
   }
 }
@@ -1648,7 +1648,7 @@ function assertObjectType(name, value, vm) {
 
 
 function mergeOptions(parent, child, vm) {
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     checkComponents(child);
   }
 
@@ -1729,7 +1729,7 @@ function resolveAsset(options, type, id, warnMissing) {
 
   var res = assets[id] || assets[camelizedId] || assets[PascalCaseId];
 
-  if ("development" !== 'production' && warnMissing && !res) {
+  if ("production" !== 'production' && warnMissing && !res) {
     warn('Failed to resolve ' + type.slice(0, -1) + ': ' + id, options);
   }
 
@@ -1770,7 +1770,7 @@ function validateProp(key, propOptions, propsData, vm) {
     toggleObserving(prevShouldObserve);
   }
 
-  if ("development" !== 'production' && // skip validation for weex recycle-list child component props
+  if ("production" !== 'production' && // skip validation for weex recycle-list child component props
   !false) {
     assertProp(prop, key, value, vm, absent);
   }
@@ -1790,7 +1790,7 @@ function getPropDefaultValue(vm, prop, key) {
 
   var def = prop.default; // warn against non-factory defaults for Object & Array
 
-  if ("development" !== 'production' && isObject(def)) {
+  if ("production" !== 'production' && isObject(def)) {
     warn('Invalid default value for prop "' + key + '": ' + 'Props with type Object/Array must use a factory function ' + 'to return the default value.', vm);
   } // the raw prop value was also undefined from previous render,
   // return previous default value to avoid unnecessary watcher trigger
@@ -2016,7 +2016,7 @@ function globalHandleError(err, vm, info) {
 }
 
 function logError(err, vm, info) {
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     warn("Error in " + info + ": \"" + err.toString() + "\"", vm);
   }
   /* istanbul ignore else */
@@ -2147,7 +2147,7 @@ function nextTick(cb, ctx) {
 
 var initProxy;
 
-if ("development" !== 'production') {
+if ("production" !== 'production') {
   var allowedGlobals = makeMap('Infinity,undefined,NaN,isFinite,isNaN,' + 'parseFloat,parseInt,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,' + 'Math,Number,Date,Array,Object,Boolean,String,RegExp,Map,Set,JSON,Intl,' + 'require' // for Webpack/Browserify
   );
 
@@ -2270,7 +2270,7 @@ function _traverse(val, seen) {
 var mark;
 var measure;
 
-if ("development" !== 'production') {
+if ("production" !== 'production') {
   var perf = inBrowser && window.performance;
   /* istanbul ignore if */
 
@@ -2335,7 +2335,7 @@ function updateListeners(on, oldOn, add, remove$$1, createOnceHandler, vm) {
     event = normalizeEvent(name);
 
     if (isUndef(cur)) {
-      "development" !== 'production' && warn("Invalid handler for event \"" + event.name + "\": got " + String(cur), vm);
+      "production" !== 'production' && warn("Invalid handler for event \"" + event.name + "\": got " + String(cur), vm);
     } else if (isUndef(old)) {
       if (isUndef(cur.fns)) {
         cur = on[name] = createFnInvoker(cur, vm);
@@ -2416,7 +2416,7 @@ function extractPropsFromVNodeData(data, Ctor, tag) {
     for (var key in propOptions) {
       var altKey = hyphenate(key);
 
-      if ("development" !== 'production') {
+      if ("production" !== 'production') {
         var keyInLowerCase = key.toLowerCase();
 
         if (key !== keyInLowerCase && attrs && hasOwn(attrs, keyInLowerCase)) {
@@ -2560,7 +2560,7 @@ function initInjections(vm) {
     toggleObserving(false);
     Object.keys(result).forEach(function (key) {
       /* istanbul ignore else */
-      if ("development" !== 'production') {
+      if ("production" !== 'production') {
         defineReactive$$1(vm, key, result[key], function () {
           warn("Avoid mutating an injected value directly since the changes will be " + "overwritten whenever the provided component re-renders. " + "injection being mutated: \"" + key + "\"", vm);
         });
@@ -2601,7 +2601,7 @@ function resolveInject(inject, vm) {
         if ('default' in inject[key]) {
           var provideDefault = inject[key].default;
           result[key] = typeof provideDefault === 'function' ? provideDefault.call(vm) : provideDefault;
-        } else if ("development" !== 'production') {
+        } else if ("production" !== 'production') {
           warn("Injection \"" + key + "\" not found", vm);
         }
       }
@@ -2796,7 +2796,7 @@ function renderSlot(name, fallback, props, bindObject) {
     props = props || {};
 
     if (bindObject) {
-      if ("development" !== 'production' && !isObject(bindObject)) {
+      if ("production" !== 'production' && !isObject(bindObject)) {
         warn('slot v-bind without argument expects an Object', this);
       }
 
@@ -2866,7 +2866,7 @@ function checkKeyCodes(eventKeyCode, key, builtInKeyCode, eventKeyName, builtInK
 function bindObjectProps(data, tag, value, asProp, isSync) {
   if (value) {
     if (!isObject(value)) {
-      "development" !== 'production' && warn('v-bind without argument expects an Object or Array value', this);
+      "production" !== 'production' && warn('v-bind without argument expects an Object or Array value', this);
     } else {
       if (Array.isArray(value)) {
         value = toObject(value);
@@ -2959,7 +2959,7 @@ function markStaticNode(node, key, isOnce) {
 function bindObjectListeners(data, value) {
   if (value) {
     if (!isPlainObject(value)) {
-      "development" !== 'production' && warn('v-on without argument expects an Object value', this);
+      "production" !== 'production' && warn('v-on without argument expects an Object value', this);
     } else {
       var on = data.on = data.on ? extend({}, data.on) : {};
 
@@ -3008,7 +3008,7 @@ function bindDynamicKeys(baseObj, values) {
 
     if (typeof key === 'string' && key) {
       baseObj[values[i]] = values[i + 1];
-    } else if ("development" !== 'production' && key !== '' && key !== null) {
+    } else if ("production" !== 'production' && key !== '' && key !== null) {
       // null is a speical value for explicitly removing a binding
       warn("Invalid value for dynamic directive argument (expected string or null): " + key, this);
     }
@@ -3164,7 +3164,7 @@ function cloneAndMarkFunctionalResult(vnode, data, contextVm, options, renderCon
   clone.fnContext = contextVm;
   clone.fnOptions = options;
 
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     (clone.devtoolsMeta = clone.devtoolsMeta || {}).renderContext = renderContext;
   }
 
@@ -3265,7 +3265,7 @@ function createComponent(Ctor, data, context, children, tag) {
 
 
   if (typeof Ctor !== 'function') {
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       warn("Invalid Component definition: " + String(Ctor), context);
     }
 
@@ -3421,7 +3421,7 @@ function createElement(context, tag, data, children, normalizationType, alwaysNo
 
 function _createElement(context, tag, data, children, normalizationType) {
   if (isDef(data) && isDef(data.__ob__)) {
-    "development" !== 'production' && warn("Avoid using observed data object as vnode data: " + JSON.stringify(data) + "\n" + 'Always create fresh vnode data objects in each render!', context);
+    "production" !== 'production' && warn("Avoid using observed data object as vnode data: " + JSON.stringify(data) + "\n" + 'Always create fresh vnode data objects in each render!', context);
     return createEmptyVNode();
   } // object syntax in v-bind
 
@@ -3436,7 +3436,7 @@ function _createElement(context, tag, data, children, normalizationType) {
   } // warn against non-primitive key
 
 
-  if ("development" !== 'production' && isDef(data) && isDef(data.key) && !isPrimitive(data.key)) {
+  if ("production" !== 'production' && isDef(data) && isDef(data.key) && !isPrimitive(data.key)) {
     {
       warn('Avoid using non-primitive value as key, ' + 'use string/number value instead.', context);
     }
@@ -3562,7 +3562,7 @@ function initRender(vm) {
   var parentData = parentVnode && parentVnode.data;
   /* istanbul ignore else */
 
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     defineReactive$$1(vm, '$attrs', parentData && parentData.attrs || emptyObject, function () {
       !isUpdatingChildComponent && warn("$attrs is readonly.", vm);
     }, true);
@@ -3613,7 +3613,7 @@ function renderMixin(Vue) {
 
       /* istanbul ignore else */
 
-      if ("development" !== 'production' && vm.$options.renderError) {
+      if ("production" !== 'production' && vm.$options.renderError) {
         try {
           vnode = vm.$options.renderError.call(vm._renderProxy, vm.$createElement, e);
         } catch (e) {
@@ -3634,7 +3634,7 @@ function renderMixin(Vue) {
 
 
     if (!(vnode instanceof VNode)) {
-      if ("development" !== 'production' && Array.isArray(vnode)) {
+      if ("production" !== 'production' && Array.isArray(vnode)) {
         warn('Multiple root nodes returned from render function. Render function ' + 'should return a single root node.', vm);
       }
 
@@ -3713,7 +3713,7 @@ function resolveAsyncComponent(factory, baseCtor) {
       }
     });
     var reject = once(function (reason) {
-      "development" !== 'production' && warn("Failed to resolve async component: " + String(factory) + (reason ? "\nReason: " + reason : ''));
+      "production" !== 'production' && warn("Failed to resolve async component: " + String(factory) + (reason ? "\nReason: " + reason : ''));
 
       if (isDef(factory.errorComp)) {
         factory.error = true;
@@ -3753,7 +3753,7 @@ function resolveAsyncComponent(factory, baseCtor) {
         if (isDef(res.timeout)) {
           setTimeout(function () {
             if (isUndef(factory.resolved)) {
-              reject("development" !== 'production' ? "timeout (" + res.timeout + "ms)" : null);
+              reject("production" !== 'production' ? "timeout (" + res.timeout + "ms)" : null);
             }
           }, res.timeout);
         }
@@ -3911,7 +3911,7 @@ function eventsMixin(Vue) {
   Vue.prototype.$emit = function (event) {
     var vm = this;
 
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       var lowerCaseEvent = event.toLowerCase();
 
       if (lowerCaseEvent !== event && vm._events[lowerCaseEvent]) {
@@ -4078,7 +4078,7 @@ function mountComponent(vm, el, hydrating) {
   if (!vm.$options.render) {
     vm.$options.render = createEmptyVNode;
 
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       /* istanbul ignore if */
       if (vm.$options.template && vm.$options.template.charAt(0) !== '#' || vm.$options.el || el) {
         warn('You are using the runtime-only build of Vue where the template ' + 'compiler is not available. Either pre-compile the templates into ' + 'render functions, or use the compiler-included build.', vm);
@@ -4092,7 +4092,7 @@ function mountComponent(vm, el, hydrating) {
   var updateComponent;
   /* istanbul ignore if */
 
-  if ("development" !== 'production' && config.performance && mark) {
+  if ("production" !== 'production' && config.performance && mark) {
     updateComponent = function () {
       var name = vm._name;
       var id = vm._uid;
@@ -4141,7 +4141,7 @@ function mountComponent(vm, el, hydrating) {
 }
 
 function updateChildComponent(vm, propsData, listeners, parentVnode, renderChildren) {
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     isUpdatingChildComponent = true;
   } // determine whether component has slot children
   // we need to do this before overwriting $options._renderChildren.
@@ -4200,7 +4200,7 @@ function updateChildComponent(vm, propsData, listeners, parentVnode, renderChild
     vm.$forceUpdate();
   }
 
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     isUpdatingChildComponent = false;
   }
 }
@@ -4294,7 +4294,7 @@ function resetSchedulerState() {
   index = queue.length = activatedChildren.length = 0;
   has = {};
 
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     circular = {};
   }
 
@@ -4354,7 +4354,7 @@ function flushSchedulerQueue() {
     has[id] = null;
     watcher.run(); // in dev build, check and stop circular updates.
 
-    if ("development" !== 'production' && has[id] != null) {
+    if ("production" !== 'production' && has[id] != null) {
       circular[id] = (circular[id] || 0) + 1;
 
       if (circular[id] > MAX_UPDATE_COUNT) {
@@ -4443,7 +4443,7 @@ function queueWatcher(watcher) {
     if (!waiting) {
       waiting = true;
 
-      if ("development" !== 'production' && !config.async) {
+      if ("production" !== 'production' && !config.async) {
         flushSchedulerQueue();
         return;
       }
@@ -4492,7 +4492,7 @@ var Watcher = function Watcher(vm, expOrFn, cb, options, isRenderWatcher) {
   this.newDeps = [];
   this.depIds = new _Set();
   this.newDepIds = new _Set();
-  this.expression = "development" !== 'production' ? expOrFn.toString() : ''; // parse expression for getter
+  this.expression = "production" !== 'production' ? expOrFn.toString() : ''; // parse expression for getter
 
   if (typeof expOrFn === 'function') {
     this.getter = expOrFn;
@@ -4501,7 +4501,7 @@ var Watcher = function Watcher(vm, expOrFn, cb, options, isRenderWatcher) {
 
     if (!this.getter) {
       this.getter = noop;
-      "development" !== 'production' && warn("Failed watching path: \"" + expOrFn + "\" " + 'Watcher only accepts simple dot-delimited paths. ' + 'For full control, use a function instead.', vm);
+      "production" !== 'production' && warn("Failed watching path: \"" + expOrFn + "\" " + 'Watcher only accepts simple dot-delimited paths. ' + 'For full control, use a function instead.', vm);
     }
   }
 
@@ -4739,7 +4739,7 @@ function initProps(vm, propsOptions) {
     var value = validateProp(key, propsOptions, propsData, vm);
     /* istanbul ignore else */
 
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       var hyphenatedKey = hyphenate(key);
 
       if (isReservedAttribute(hyphenatedKey) || config.isReservedAttr(hyphenatedKey)) {
@@ -4774,7 +4774,7 @@ function initData(vm) {
 
   if (!isPlainObject(data)) {
     data = {};
-    "development" !== 'production' && warn('data functions should return an object:\n' + 'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function', vm);
+    "production" !== 'production' && warn('data functions should return an object:\n' + 'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function', vm);
   } // proxy data on instance
 
 
@@ -4786,14 +4786,14 @@ function initData(vm) {
   while (i--) {
     var key = keys[i];
 
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       if (methods && hasOwn(methods, key)) {
         warn("Method \"" + key + "\" has already been defined as a data property.", vm);
       }
     }
 
     if (props && hasOwn(props, key)) {
-      "development" !== 'production' && warn("The data property \"" + key + "\" is already declared as a prop. " + "Use prop default value instead.", vm);
+      "production" !== 'production' && warn("The data property \"" + key + "\" is already declared as a prop. " + "Use prop default value instead.", vm);
     } else if (!isReserved(key)) {
       proxy(vm, "_data", key);
     }
@@ -4833,7 +4833,7 @@ function initComputed(vm, computed) {
     var userDef = computed[key];
     var getter = typeof userDef === 'function' ? userDef : userDef.get;
 
-    if ("development" !== 'production' && getter == null) {
+    if ("production" !== 'production' && getter == null) {
       warn("Getter is missing for computed property \"" + key + "\".", vm);
     }
 
@@ -4847,7 +4847,7 @@ function initComputed(vm, computed) {
 
     if (!(key in vm)) {
       defineComputed(vm, key, userDef);
-    } else if ("development" !== 'production') {
+    } else if ("production" !== 'production') {
       if (key in vm.$data) {
         warn("The computed property \"" + key + "\" is already defined in data.", vm);
       } else if (vm.$options.props && key in vm.$options.props) {
@@ -4868,7 +4868,7 @@ function defineComputed(target, key, userDef) {
     sharedPropertyDefinition.set = userDef.set || noop;
   }
 
-  if ("development" !== 'production' && sharedPropertyDefinition.set === noop) {
+  if ("production" !== 'production' && sharedPropertyDefinition.set === noop) {
     sharedPropertyDefinition.set = function () {
       warn("Computed property \"" + key + "\" was assigned to but it has no setter.", this);
     };
@@ -4905,7 +4905,7 @@ function initMethods(vm, methods) {
   var props = vm.$options.props;
 
   for (var key in methods) {
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       if (typeof methods[key] !== 'function') {
         warn("Method \"" + key + "\" has type \"" + typeof methods[key] + "\" in the component definition. " + "Did you reference the function correctly?", vm);
       }
@@ -4966,7 +4966,7 @@ function stateMixin(Vue) {
     return this._props;
   };
 
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     dataDef.set = function () {
       warn('Avoid replacing instance root $data. ' + 'Use nested data properties instead.', this);
     };
@@ -5018,7 +5018,7 @@ function initMixin(Vue) {
     var startTag, endTag;
     /* istanbul ignore if */
 
-    if ("development" !== 'production' && config.performance && mark) {
+    if ("production" !== 'production' && config.performance && mark) {
       startTag = "vue-perf-start:" + vm._uid;
       endTag = "vue-perf-end:" + vm._uid;
       mark(startTag);
@@ -5038,7 +5038,7 @@ function initMixin(Vue) {
     /* istanbul ignore else */
 
 
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       initProxy(vm);
     } else {
       vm._renderProxy = vm;
@@ -5058,7 +5058,7 @@ function initMixin(Vue) {
     callHook(vm, 'created');
     /* istanbul ignore if */
 
-    if ("development" !== 'production' && config.performance && mark) {
+    if ("production" !== 'production' && config.performance && mark) {
       vm._name = formatComponentName(vm, false);
       mark(endTag);
       measure("vue " + vm._name + " init", startTag, endTag);
@@ -5136,7 +5136,7 @@ function resolveModifiedOptions(Ctor) {
 }
 
 function Vue(options) {
-  if ("development" !== 'production' && !(this instanceof Vue)) {
+  if ("production" !== 'production' && !(this instanceof Vue)) {
     warn('Vue is a constructor and should be called with the `new` keyword');
   }
 
@@ -5208,7 +5208,7 @@ function initExtend(Vue) {
 
     var name = extendOptions.name || Super.options.name;
 
-    if ("development" !== 'production' && name) {
+    if ("production" !== 'production' && name) {
       validateComponentName(name);
     }
 
@@ -5286,7 +5286,7 @@ function initAssetRegisters(Vue) {
         return this.options[type + 's'][id];
       } else {
         /* istanbul ignore if */
-        if ("development" !== 'production' && type === 'component') {
+        if ("production" !== 'production' && type === 'component') {
           validateComponentName(id);
         }
 
@@ -5447,7 +5447,7 @@ function initGlobalAPI(Vue) {
     return config;
   };
 
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     configDef.set = function () {
       warn('Do not replace the Vue.config object, set individual fields instead.');
     };
@@ -5700,7 +5700,7 @@ function query(el) {
     var selected = document.querySelector(el);
 
     if (!selected) {
-      "development" !== 'production' && warn('Cannot find element: ' + el);
+      "production" !== 'production' && warn('Cannot find element: ' + el);
       return document.createElement('div');
     }
 
@@ -5948,7 +5948,7 @@ function createPatchFunction(backend) {
     var tag = vnode.tag;
 
     if (isDef(tag)) {
-      if ("development" !== 'production') {
+      if ("production" !== 'production') {
         if (data && data.pre) {
           creatingElmInVPre++;
         }
@@ -5972,7 +5972,7 @@ function createPatchFunction(backend) {
         insert(parentElm, vnode.elm, refElm);
       }
 
-      if ("development" !== 'production' && data && data.pre) {
+      if ("production" !== 'production' && data && data.pre) {
         creatingElmInVPre--;
       }
     } else if (isTrue(vnode.isComment)) {
@@ -6073,7 +6073,7 @@ function createPatchFunction(backend) {
 
   function createChildren(vnode, children, insertedVnodeQueue) {
     if (Array.isArray(children)) {
-      if ("development" !== 'production') {
+      if ("production" !== 'production') {
         checkDuplicateKeys(children);
       }
 
@@ -6228,7 +6228,7 @@ function createPatchFunction(backend) {
 
     var canMove = !removeOnly;
 
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       checkDuplicateKeys(newCh);
     }
 
@@ -6376,7 +6376,7 @@ function createPatchFunction(backend) {
           updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly);
         }
       } else if (isDef(ch)) {
-        if ("development" !== 'production') {
+        if ("production" !== 'production') {
           checkDuplicateKeys(ch);
         }
 
@@ -6434,7 +6434,7 @@ function createPatchFunction(backend) {
     } // assert node match
 
 
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       if (!assertNodeMatch(elm, vnode, inVPre)) {
         return false;
       }
@@ -6464,7 +6464,7 @@ function createPatchFunction(backend) {
           if (isDef(i = data) && isDef(i = i.domProps) && isDef(i = i.innerHTML)) {
             if (i !== elm.innerHTML) {
               /* istanbul ignore if */
-              if ("development" !== 'production' && typeof console !== 'undefined' && !hydrationBailed) {
+              if ("production" !== 'production' && typeof console !== 'undefined' && !hydrationBailed) {
                 hydrationBailed = true;
                 console.warn('Parent: ', elm);
                 console.warn('server innerHTML: ', i);
@@ -6491,7 +6491,7 @@ function createPatchFunction(backend) {
 
             if (!childrenMatch || childNode) {
               /* istanbul ignore if */
-              if ("development" !== 'production' && typeof console !== 'undefined' && !hydrationBailed) {
+              if ("production" !== 'production' && typeof console !== 'undefined' && !hydrationBailed) {
                 hydrationBailed = true;
                 console.warn('Parent: ', elm);
                 console.warn('Mismatching childNodes vs. VNodes: ', elm.childNodes, children);
@@ -6570,7 +6570,7 @@ function createPatchFunction(backend) {
             if (hydrate(oldVnode, vnode, insertedVnodeQueue)) {
               invokeInsertHook(vnode, insertedVnodeQueue, true);
               return oldVnode;
-            } else if ("development" !== 'production') {
+            } else if ("production" !== 'production') {
               warn('The client-side rendered virtual DOM tree is not matching ' + 'server-rendered content. This is likely caused by incorrect ' + 'HTML markup, for example nesting block-level elements inside ' + '<p>, or missing <tbody>. Bailing hydration and performing ' + 'full client-side render.');
             }
           } // either not server-rendered, or hydration failed.
@@ -7613,7 +7613,7 @@ function enter(vnode, toggleDisplay) {
   var enterCancelledHook = isAppear ? appearCancelled || enterCancelled : enterCancelled;
   var explicitEnterDuration = toNumber(isObject(duration) ? duration.enter : duration);
 
-  if ("development" !== 'production' && explicitEnterDuration != null) {
+  if ("production" !== 'production' && explicitEnterDuration != null) {
     checkDuration(explicitEnterDuration, 'enter', vnode);
   }
 
@@ -7721,7 +7721,7 @@ function leave(vnode, rm) {
   var userWantsControl = getHookArgumentsLength(leave);
   var explicitLeaveDuration = toNumber(isObject(duration) ? duration.leave : duration);
 
-  if ("development" !== 'production' && isDef(explicitLeaveDuration)) {
+  if ("production" !== 'production' && isDef(explicitLeaveDuration)) {
     checkDuration(explicitLeaveDuration, 'leave', vnode);
   }
 
@@ -7952,7 +7952,7 @@ function actuallySetSelected(el, binding, vm) {
   var isMultiple = el.multiple;
 
   if (isMultiple && !Array.isArray(value)) {
-    "development" !== 'production' && warn("<select multiple v-model=\"" + binding.expression + "\"> " + "expects an Array value for its binding, but got " + Object.prototype.toString.call(value).slice(8, -1), vm);
+    "production" !== 'production' && warn("<select multiple v-model=\"" + binding.expression + "\"> " + "expects an Array value for its binding, but got " + Object.prototype.toString.call(value).slice(8, -1), vm);
     return;
   }
 
@@ -8173,13 +8173,13 @@ var Transition = {
     } // warn multiple elements
 
 
-    if ("development" !== 'production' && children.length > 1) {
+    if ("production" !== 'production' && children.length > 1) {
       warn('<transition> can only be used on a single element. Use ' + '<transition-group> for lists.', this.$parent);
     }
 
     var mode = this.mode; // warn invalid mode
 
-    if ("development" !== 'production' && mode && mode !== 'in-out' && mode !== 'out-in') {
+    if ("production" !== 'production' && mode && mode !== 'in-out' && mode !== 'out-in') {
       warn('invalid <transition> mode: ' + mode, this.$parent);
     }
 
@@ -8294,7 +8294,7 @@ var TransitionGroup = {
           children.push(c);
           map[c.key] = c;
           (c.data || (c.data = {})).transition = transitionData;
-        } else if ("development" !== 'production') {
+        } else if ("production" !== 'production') {
           var opts = c.componentOptions;
           var name = opts ? opts.Ctor.options.name || opts.tag || '' : c.tag;
           warn("<transition-group> children must be keyed: <" + name + ">");
@@ -8459,12 +8459,12 @@ if (inBrowser) {
     if (config.devtools) {
       if (devtools) {
         devtools.emit('init', Vue);
-      } else if ("development" !== 'production' && "development" !== 'test') {
+      } else if ("production" !== 'production' && "production" !== 'test') {
         console[console.info ? 'info' : 'log']('Download the Vue Devtools extension for a better development experience:\n' + 'https://github.com/vuejs/vue-devtools');
       }
     }
 
-    if ("development" !== 'production' && "development" !== 'test' && config.productionTip !== false && typeof console !== 'undefined') {
+    if ("production" !== 'production' && "production" !== 'test' && config.productionTip !== false && typeof console !== 'undefined') {
       console[console.info ? 'info' : 'log']("You are running Vue in development mode.\n" + "Make sure to turn on production mode when deploying for production.\n" + "See more tips at https://vuejs.org/guide/deployment.html");
     }
   }, 0);
@@ -8474,7 +8474,7 @@ if (inBrowser) {
 
 var _default = Vue;
 exports.default = _default;
-},{}],"../node_modules/vue-router/dist/vue-router.esm.js":[function(require,module,exports) {
+},{}],"7ov2":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8496,7 +8496,7 @@ function assert(condition, message) {
 }
 
 function warn(condition, message) {
-  if ("development" !== 'production' && !condition) {
+  if ("production" !== 'production' && !condition) {
     typeof console !== 'undefined' && console.warn("[vue-router] " + message);
   }
 }
@@ -8610,7 +8610,7 @@ function resolveProps(route, config) {
       return config ? route.params : undefined;
 
     default:
-      if ("development" !== 'production') {
+      if ("production" !== 'production') {
         warn(false, "props in \"" + route.path + "\" is a " + typeof config + ", " + "expecting an object, function or boolean.");
       }
 
@@ -8651,7 +8651,7 @@ function resolveQuery(query, extraQuery, _parseQuery) {
   try {
     parsedQuery = parse(query || '');
   } catch (e) {
-    "development" !== 'production' && warn(false, e.message);
+    "production" !== 'production' && warn(false, e.message);
     parsedQuery = {};
   }
 
@@ -9589,7 +9589,7 @@ function fillParams(path, params, routeMsg) {
       pretty: true
     });
   } catch (e) {
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       warn(false, "missing param for " + routeMsg + ": " + e.message);
     }
 
@@ -9629,7 +9629,7 @@ function addRouteRecord(pathList, pathMap, nameMap, route, parent, matchAs) {
   var path = route.path;
   var name = route.name;
 
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     assert(path != null, "\"path\" is required in a route configuration.");
     assert(typeof route.component !== 'string', "route config \"component\" for path: " + String(path || name) + " cannot be a " + "string id. Use an actual component instead.");
   }
@@ -9663,7 +9663,7 @@ function addRouteRecord(pathList, pathMap, nameMap, route, parent, matchAs) {
     // Warn if route is named, does not redirect and has a default child route.
     // If users navigate to this route by name, the default child will
     // not be rendered (GH Issue #629)
-    if ("development" !== 'production') {
+    if ("production" !== 'production') {
       if (route.name && !route.redirect && route.children.some(function (child) {
         return /^\/?$/.test(child.path);
       })) {
@@ -9697,7 +9697,7 @@ function addRouteRecord(pathList, pathMap, nameMap, route, parent, matchAs) {
   if (name) {
     if (!nameMap[name]) {
       nameMap[name] = record;
-    } else if ("development" !== 'production' && !matchAs) {
+    } else if ("production" !== 'production' && !matchAs) {
       warn(false, "Duplicate named routes definition: " + "{ name: \"" + name + "\", path: \"" + record.path + "\" }");
     }
   }
@@ -9706,7 +9706,7 @@ function addRouteRecord(pathList, pathMap, nameMap, route, parent, matchAs) {
 function compileRouteRegex(path, pathToRegexpOptions) {
   var regex = pathToRegexp_1(path, [], pathToRegexpOptions);
 
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     var keys = Object.create(null);
     regex.keys.forEach(function (key) {
       warn(!keys[key.name], "Duplicate param keys in route with path: \"" + path + "\"");
@@ -9756,7 +9756,7 @@ function normalizeLocation(raw, current, append, router) {
     } else if (current.matched.length) {
       var rawPath = current.matched[current.matched.length - 1].path;
       next.path = fillParams(rawPath, params, "path " + current.path);
-    } else if ("development" !== 'production') {
+    } else if ("production" !== 'production') {
       warn(false, "relative params navigation requires a current route.");
     }
 
@@ -9808,7 +9808,7 @@ function createMatcher(routes, router) {
     if (name) {
       var record = nameMap[name];
 
-      if ("development" !== 'production') {
+      if ("production" !== 'production') {
         warn(record, "Route with name '" + name + "' does not exist");
       }
 
@@ -9866,7 +9866,7 @@ function createMatcher(routes, router) {
     }
 
     if (!redirect || typeof redirect !== 'object') {
-      if ("development" !== 'production') {
+      if ("production" !== 'production') {
         warn(false, "invalid redirect option: " + JSON.stringify(redirect));
       }
 
@@ -9887,7 +9887,7 @@ function createMatcher(routes, router) {
       // resolved named direct
       var targetRecord = nameMap[name];
 
-      if ("development" !== 'production') {
+      if ("production" !== 'production') {
         assert(targetRecord, "redirect failed: named route \"" + name + "\" not found.");
       }
 
@@ -9911,7 +9911,7 @@ function createMatcher(routes, router) {
         hash: hash
       }, undefined, location);
     } else {
-      if ("development" !== 'production') {
+      if ("production" !== 'production') {
         warn(false, "invalid redirect option: " + JSON.stringify(redirect));
       }
 
@@ -10008,7 +10008,7 @@ function handleScroll(router, to, from, isPop) {
     return;
   }
 
-  if ("development" !== 'production') {
+  if ("production" !== 'production') {
     assert(typeof behavior === 'function', "scrollBehavior must be a function");
   } // wait until re-render finishes before scrolling
 
@@ -10025,7 +10025,7 @@ function handleScroll(router, to, from, isPop) {
       shouldScroll.then(function (shouldScroll) {
         scrollToPosition(shouldScroll, position);
       }).catch(function (err) {
-        if ("development" !== 'production') {
+        if ("production" !== 'production') {
           assert(false, err.toString());
         }
       });
@@ -10215,7 +10215,7 @@ function resolveAsyncComponents(matched) {
         });
         var reject = once(function (reason) {
           var msg = "Failed to resolve async component " + key + ": " + reason;
-          "development" !== 'production' && warn(false, msg);
+          "production" !== 'production' && warn(false, msg);
 
           if (!error) {
             error = isError(reason) ? reason : new Error(msg);
@@ -10891,7 +10891,7 @@ var VueRouter = function VueRouter(options) {
       break;
 
     default:
-      if ("development" !== 'production') {
+      if ("production" !== 'production') {
         assert(false, "invalid mode: " + mode);
       }
 
@@ -10916,7 +10916,7 @@ VueRouter.prototype.init = function init(app
 /* Vue component instance */
 ) {
   var this$1 = this;
-  "development" !== 'production' && assert(install.installed, "not installed. Make sure to call `Vue.use(VueRouter)` " + "before creating root instance.");
+  "production" !== 'production' && assert(install.installed, "not installed. Make sure to call `Vue.use(VueRouter)` " + "before creating root instance.");
   this.apps.push(app); // main app already initialized.
 
   if (this.app) {
@@ -11048,324 +11048,11 @@ if (inBrowser && window.Vue) {
 
 var _default = VueRouter;
 exports.default = _default;
-},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+},{}],"WdpE":[function(require,module,exports) {
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../../node_modules/prismjs/themes/prism-tomorrow.css":[function(require,module,exports) {
-
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"media/logo.png":[function(require,module,exports) {
-module.exports = "/logo.da61e3ea.png";
-},{}],"../node_modules/vue-hot-reload-api/dist/index.js":[function(require,module,exports) {
-var Vue // late bind
-var version
-var map = (window.__VUE_HOT_MAP__ = Object.create(null))
-var installed = false
-var isBrowserify = false
-var initHookName = 'beforeCreate'
-
-exports.install = function (vue, browserify) {
-  if (installed) { return }
-  installed = true
-
-  Vue = vue.__esModule ? vue.default : vue
-  version = Vue.version.split('.').map(Number)
-  isBrowserify = browserify
-
-  // compat with < 2.0.0-alpha.7
-  if (Vue.config._lifecycleHooks.indexOf('init') > -1) {
-    initHookName = 'init'
-  }
-
-  exports.compatible = version[0] >= 2
-  if (!exports.compatible) {
-    console.warn(
-      '[HMR] You are using a version of vue-hot-reload-api that is ' +
-        'only compatible with Vue.js core ^2.0.0.'
-    )
-    return
-  }
-}
-
-/**
- * Create a record for a hot module, which keeps track of its constructor
- * and instances
- *
- * @param {String} id
- * @param {Object} options
- */
-
-exports.createRecord = function (id, options) {
-  if(map[id]) { return }
-  
-  var Ctor = null
-  if (typeof options === 'function') {
-    Ctor = options
-    options = Ctor.options
-  }
-  makeOptionsHot(id, options)
-  map[id] = {
-    Ctor: Ctor,
-    options: options,
-    instances: []
-  }
-}
-
-/**
- * Check if module is recorded
- *
- * @param {String} id
- */
-
-exports.isRecorded = function (id) {
-  return typeof map[id] !== 'undefined'
-}
-
-/**
- * Make a Component options object hot.
- *
- * @param {String} id
- * @param {Object} options
- */
-
-function makeOptionsHot(id, options) {
-  if (options.functional) {
-    var render = options.render
-    options.render = function (h, ctx) {
-      var instances = map[id].instances
-      if (ctx && instances.indexOf(ctx.parent) < 0) {
-        instances.push(ctx.parent)
-      }
-      return render(h, ctx)
-    }
-  } else {
-    injectHook(options, initHookName, function() {
-      var record = map[id]
-      if (!record.Ctor) {
-        record.Ctor = this.constructor
-      }
-      record.instances.push(this)
-    })
-    injectHook(options, 'beforeDestroy', function() {
-      var instances = map[id].instances
-      instances.splice(instances.indexOf(this), 1)
-    })
-  }
-}
-
-/**
- * Inject a hook to a hot reloadable component so that
- * we can keep track of it.
- *
- * @param {Object} options
- * @param {String} name
- * @param {Function} hook
- */
-
-function injectHook(options, name, hook) {
-  var existing = options[name]
-  options[name] = existing
-    ? Array.isArray(existing) ? existing.concat(hook) : [existing, hook]
-    : [hook]
-}
-
-function tryWrap(fn) {
-  return function (id, arg) {
-    try {
-      fn(id, arg)
-    } catch (e) {
-      console.error(e)
-      console.warn(
-        'Something went wrong during Vue component hot-reload. Full reload required.'
-      )
-    }
-  }
-}
-
-function updateOptions (oldOptions, newOptions) {
-  for (var key in oldOptions) {
-    if (!(key in newOptions)) {
-      delete oldOptions[key]
-    }
-  }
-  for (var key$1 in newOptions) {
-    oldOptions[key$1] = newOptions[key$1]
-  }
-}
-
-exports.rerender = tryWrap(function (id, options) {
-  var record = map[id]
-  if (!options) {
-    record.instances.slice().forEach(function (instance) {
-      instance.$forceUpdate()
-    })
-    return
-  }
-  if (typeof options === 'function') {
-    options = options.options
-  }
-  if (record.Ctor) {
-    record.Ctor.options.render = options.render
-    record.Ctor.options.staticRenderFns = options.staticRenderFns
-    record.instances.slice().forEach(function (instance) {
-      instance.$options.render = options.render
-      instance.$options.staticRenderFns = options.staticRenderFns
-      // reset static trees
-      // pre 2.5, all static trees are cahced together on the instance
-      if (instance._staticTrees) {
-        instance._staticTrees = []
-      }
-      // 2.5.0
-      if (Array.isArray(record.Ctor.options.cached)) {
-        record.Ctor.options.cached = []
-      }
-      // 2.5.3
-      if (Array.isArray(instance.$options.cached)) {
-        instance.$options.cached = []
-      }
-      // post 2.5.4: v-once trees are cached on instance._staticTrees.
-      // Pure static trees are cached on the staticRenderFns array
-      // (both already reset above)
-      instance.$forceUpdate()
-    })
-  } else {
-    // functional or no instance created yet
-    record.options.render = options.render
-    record.options.staticRenderFns = options.staticRenderFns
-
-    // handle functional component re-render
-    if (record.options.functional) {
-      // rerender with full options
-      if (Object.keys(options).length > 2) {
-        updateOptions(record.options, options)
-      } else {
-        // template-only rerender.
-        // need to inject the style injection code for CSS modules
-        // to work properly.
-        var injectStyles = record.options._injectStyles
-        if (injectStyles) {
-          var render = options.render
-          record.options.render = function (h, ctx) {
-            injectStyles.call(ctx)
-            return render(h, ctx)
-          }
-        }
-      }
-      record.options._Ctor = null
-      // 2.5.3
-      if (Array.isArray(record.options.cached)) {
-        record.options.cached = []
-      }
-      record.instances.slice().forEach(function (instance) {
-        instance.$forceUpdate()
-      })
-    }
-  }
-})
-
-exports.reload = tryWrap(function (id, options) {
-  var record = map[id]
-  if (options) {
-    if (typeof options === 'function') {
-      options = options.options
-    }
-    makeOptionsHot(id, options)
-    if (record.Ctor) {
-      if (version[1] < 2) {
-        // preserve pre 2.2 behavior for global mixin handling
-        record.Ctor.extendOptions = options
-      }
-      var newCtor = record.Ctor.super.extend(options)
-      record.Ctor.options = newCtor.options
-      record.Ctor.cid = newCtor.cid
-      record.Ctor.prototype = newCtor.prototype
-      if (newCtor.release) {
-        // temporary global mixin strategy used in < 2.0.0-alpha.6
-        newCtor.release()
-      }
-    } else {
-      updateOptions(record.options, options)
-    }
-  }
-  record.instances.slice().forEach(function (instance) {
-    if (instance.$vnode && instance.$vnode.context) {
-      instance.$vnode.context.$forceUpdate()
-    } else {
-      console.warn(
-        'Root or manually mounted instance modified. Full reload required.'
-      )
-    }
-  })
-})
-
-},{}],"pages/Home.vue":[function(require,module,exports) {
+},{}],"btRh":[function(require,module,exports) {
+module.exports = "logo.6957382a.png";
+},{}],"+lUt":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11414,32 +11101,8 @@ exports.default = _default;
     
         /* template */
         Object.assign($830572, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "home" }, [
-    _c("div", { staticClass: "content" }, [
-      _c("div", { staticClass: "logo" }, [
-        _c("img", { attrs: { src: _vm.logo, alt: "" } }),
-        _vm._v(" "),
-        _c("div", { staticClass: "name" }, [_vm._v("Interview 101")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "buttons" }, [
-        _c("a", { staticClass: "button", attrs: { href: "#/categories" } }, [
-          _vm._v("See All Questions")
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "button lucky", on: { click: _vm.onLucky } }, [
-          _vm._v("I'm Feeling Lucky")
-        ])
-      ])
-    ])
-  ])
-}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"home"},[_c('div',{staticClass:"content"},[_c('div',{staticClass:"logo"},[_c('img',{attrs:{"src":_vm.logo,"alt":""}}),_vm._v(" "),_c('div',{staticClass:"name"},[_vm._v("Interview 101")])]),_vm._v(" "),_c('div',{staticClass:"buttons"},[_c('a',{staticClass:"button",attrs:{"href":"#/categories"}},[_vm._v("See All Questions")]),_vm._v(" "),_c('a',{staticClass:"button lucky",on:{"click":_vm.onLucky}},[_vm._v("I'm Feeling Lucky")])])])])}
 var staticRenderFns = []
-render._withStripped = true
 
           return {
             render: render,
@@ -11450,28 +11113,7 @@ render._withStripped = true
           };
         })());
       
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$830572', $830572);
-          } else {
-            api.reload('$830572', $830572);
-          }
-        }
-
-        
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-      }
-    })();
-},{"../media/logo.png":"media/logo.png","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/Category.vue":[function(require,module,exports) {
+},{"../media/logo.png":"btRh"}],"TU+R":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11540,57 +11182,8 @@ exports.default = _default;
     
         /* template */
         Object.assign($cecd54, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "category" }, [
-    _c("div", { staticClass: "category__title", on: { click: _vm.onOpen } }, [
-      _c("div", [
-        _c("strong", { staticStyle: { "font-size": "16px" } }, [
-          _vm._v(_vm._s(_vm.page.name))
-        ]),
-        _c("span", [_vm._v("（" + _vm._s(_vm.categories.length) + "）")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "category__icon" }, [
-        _c("i", { class: ["iconfont", "icon-" + _vm.page.icon] })
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "category__body is-opened" },
-      _vm._l(_vm.categories, function(category, category_index) {
-        return _c(
-          "router-link",
-          {
-            staticClass: "category__item",
-            attrs: { to: "/questions/" + _vm.page.id + "/" + category.id }
-          },
-          [
-            _c("div", { staticClass: "category__itemname" }, [
-              _vm._v(
-                "\n        " +
-                  _vm._s(category.name) +
-                  "（" +
-                  _vm._s(category.questions ? category.questions.length : 0) +
-                  "）\n      "
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "category__itemmore" }, [
-              _c("i", { staticClass: "iconfont icon-arrow" })
-            ])
-          ]
-        )
-      }),
-      1
-    )
-  ])
-}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"category"},[_c('div',{staticClass:"category__title",on:{"click":_vm.onOpen}},[_c('div',[_c('strong',{staticStyle:{"font-size":"16px"}},[_vm._v(_vm._s(_vm.page.name))]),_c('span',[_vm._v("（"+_vm._s(_vm.categories.length)+"）")])]),_vm._v(" "),_c('div',{staticClass:"category__icon"},[_c('i',{class:[ 'iconfont', 'icon-' + _vm.page.icon ]})])]),_vm._v(" "),_c('div',{staticClass:"category__body is-opened"},_vm._l((_vm.categories),function(category,category_index){return _c('router-link',{staticClass:"category__item",attrs:{"to":'/questions/' + _vm.page.id + '/' + category.id}},[_c('div',{staticClass:"category__itemname"},[_vm._v("\n        "+_vm._s(category.name)+"（"+_vm._s(category.questions ? category.questions.length : 0)+"）\n      ")]),_vm._v(" "),_c('div',{staticClass:"category__itemmore"},[_c('i',{staticClass:"iconfont icon-arrow"})])])}),1)])}
 var staticRenderFns = []
-render._withStripped = true
 
           return {
             render: render,
@@ -11601,28 +11194,7 @@ render._withStripped = true
           };
         })());
       
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$cecd54', $cecd54);
-          } else {
-            api.reload('$cecd54', $cecd54);
-          }
-        }
-
-        
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-      }
-    })();
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"data.json":[function(require,module,exports) {
+},{}],"7boC":[function(require,module,exports) {
 module.exports = [{
   "name": "通用知识",
   "icon": "align-right",
@@ -11702,7 +11274,7 @@ module.exports = [{
     }, {
       "question": "JavaScript 是如何做隐式类型转换的",
       "question_body": "",
-      "answer": "<h2>原始类型转换的规则</h2>\n<p>原始类型转换大致可以分为下面3类和2条特殊规则</p>\n<ol>\n<li><p>to string</p>\n<p>隐式转换发生在用一个字符串进行+操作的二元运算</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token number\">123</span> <span class=\"token operator\">+</span> <span class=\"token string\">''</span>    <span class=\"token comment\">// implicit</span></code></pre>\n</li>\n<li><p>to boolean</p>\n<p>隐式转换发生在使用了（ || &amp;&amp; ！）进行逻辑运算时</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span><span class=\"token number\">2</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span> <span class=\"token operator\">...</span> <span class=\"token punctuation\">}</span>      <span class=\"token comment\">// implicit due to logical context</span>\n<span class=\"token operator\">!</span><span class=\"token operator\">!</span><span class=\"token number\">2</span>                 <span class=\"token comment\">// implicit due to logical operator</span>\n<span class=\"token number\">2</span> <span class=\"token operator\">||</span> <span class=\"token string\">'hello'</span>        <span class=\"token comment\">// implicit due to logical operator</span></code></pre>\n<p>除了下面列出的值为false, 其余的都为true</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token string\">''</span><span class=\"token punctuation\">)</span>         <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">)</span>          <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token operator\">-</span><span class=\"token number\">0</span><span class=\"token punctuation\">)</span>         <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token number\">NaN</span><span class=\"token punctuation\">)</span>        <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span>       <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span>undefined<span class=\"token punctuation\">)</span>  <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span>      <span class=\"token comment\">// false</span></code></pre>\n<p>所以除了它以外的都是true</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>             <span class=\"token comment\">// true</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">)</span>             <span class=\"token comment\">// true</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token function\">Symbol</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">)</span>       <span class=\"token comment\">// true</span>\n<span class=\"token operator\">!</span><span class=\"token operator\">!</span><span class=\"token function\">Symbol</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span>              <span class=\"token comment\">// true</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token keyword\">function</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>  <span class=\"token comment\">// true</span></code></pre>\n</li>\n<li><p>to number</p>\n<p>进行 to number 的隐式转换比较多，下面列一下可能会发生的情况：</p>\n<ul>\n<li>比较运算 (&gt;, &lt;, &lt;=, &gt;=)</li>\n<li>按位运算 (|, &amp;, ^, ~)</li>\n<li>算术运算（- + * / %）</li>\n<li>== 和 !=</li>\n<li>一元运算 +</li>\n</ul>\n<p>注意当 == 的左右都是字符串时，不会进行to number的隐式转换</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>                    <span class=\"token comment\">//0</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span>undefined<span class=\"token punctuation\">)</span>              <span class=\"token comment\">// NaN</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>                    <span class=\"token comment\">// NaN</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span>                   <span class=\"token comment\">// 0</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token boolean\">true</span><span class=\"token punctuation\">)</span>                   <span class=\"token comment\">// 1</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>                 <span class=\"token comment\">//0</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token string\">\" 12 \"</span><span class=\"token punctuation\">)</span>                 <span class=\"token comment\">// 12</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token string\">\"-12.34\"</span><span class=\"token punctuation\">)</span>               <span class=\"token comment\">// -12.34</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token string\">\"\\n\"</span><span class=\"token punctuation\">)</span>                   <span class=\"token comment\">// 0</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token string\">\" 12s \"</span><span class=\"token punctuation\">)</span>                <span class=\"token comment\">// NaN</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token number\">123</span><span class=\"token punctuation\">)</span>                    <span class=\"token comment\">// 123</span></code></pre>\n</li>\n<li><p>当用 == 和 <code>null</code> 或者 <code>undeinfed</code> 进行运算时，是不会发生numeric 转换的。 <code>null</code>只==<code>null</code>或者<code>undefined</code>!</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token keyword\">null</span> <span class=\"token operator\">==</span> <span class=\"token number\">0</span>               <span class=\"token comment\">// false</span>\n<span class=\"token keyword\">null</span> <span class=\"token operator\">==</span> <span class=\"token keyword\">null</span>            <span class=\"token comment\">// true</span>\nundefined <span class=\"token operator\">==</span> undefined  <span class=\"token comment\">// true</span>\n<span class=\"token keyword\">null</span> <span class=\"token operator\">==</span> undefined       <span class=\"token comment\">// true</span></code></pre>\n</li>\n<li><p>NaN 和谁都不相等，包括它自己!</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token number\">NaN</span> <span class=\"token operator\">==</span> <span class=\"token number\">NaN</span>              <span class=\"token comment\">// false</span></code></pre>\n<p>根据上面的规则，测试一下:</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token string\">'true'</span> <span class=\"token operator\">==</span> <span class=\"token boolean\">true</span> <span class=\"token comment\">// false 因为Number('true')是 NaN; Number(true) 是1</span>\n\n<span class=\"token comment\">// 某面试题</span>\nconsole<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">)</span><span class=\"token operator\">?</span><span class=\"token boolean\">true</span><span class=\"token punctuation\">:</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>  <span class=\"token comment\">// Boolean([]) = true</span>\nconsole<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">==</span> <span class=\"token boolean\">false</span><span class=\"token operator\">?</span><span class=\"token boolean\">true</span><span class=\"token punctuation\">:</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// Number([]) = 0 所以为true</span></code></pre>\n</li>\n</ol>\n<h2>对象的类型转换</h2>\n<p>对象的类型转换分为下面四步</p>\n<ol>\n<li>如果已经是原始类型，直接返回</li>\n<li>调用 <code>input.toString()</code> 方法，如果是原始类型, 返回</li>\n<li>调用 <code>input.valueOf()</code>, 如果是原始类型, 返回</li>\n<li>如果调用 <code>input.toString()</code> 和 <code>input.valueOf()</code> 返回都不是原始类型，抛出类型错误</li>\n</ol>\n<p>举个例子：</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token punctuation\">[</span><span class=\"token number\">1</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">></span> <span class=\"token keyword\">null</span>\n<span class=\"token comment\">// [1].toString() = '1'</span>\n<span class=\"token comment\">// '1' > null</span>\n<span class=\"token comment\">// 原始类型比较进入Number('1') > Number(null)</span>\n<span class=\"token comment\">// 1 > 0</span>\n<span class=\"token comment\">// 所以为true</span>\n\n<span class=\"token comment\">// 再看一个面试题</span>\nconsole<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span> <span class=\"token operator\">==</span> <span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span><span class=\"token operator\">?</span><span class=\"token boolean\">true</span><span class=\"token punctuation\">:</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token comment\">// {}.toString() \"[object Object]\"; 返回类型字符串</span>\n<span class=\"token comment\">// Number(\"[object Object]\") NaN</span>\n<span class=\"token comment\">// Number(false) 0</span>\n<span class=\"token comment\">// 所以为false</span></code></pre>\n"
+      "answer": "<h2>原始类型转换的规则</h2>\n<p>原始类型转换大致可以分为下面3类和2条特殊规则</p>\n<ol>\n<li><p>to string</p>\n<p>隐式转换发生在用一个字符串进行+操作的二元运算</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token number\">123</span> <span class=\"token operator\">+</span> <span class=\"token string\">''</span>    <span class=\"token comment\">// implicit</span></code></pre>\n</li>\n<li><p>to boolean</p>\n<p>隐式转换发生在使用了（ || &amp;&amp; ！）进行逻辑运算时</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span><span class=\"token number\">2</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span> <span class=\"token operator\">...</span> <span class=\"token punctuation\">}</span>      <span class=\"token comment\">// implicit due to logical context</span>\n<span class=\"token operator\">!</span><span class=\"token operator\">!</span><span class=\"token number\">2</span>                 <span class=\"token comment\">// implicit due to logical operator</span>\n<span class=\"token number\">2</span> <span class=\"token operator\">||</span> <span class=\"token string\">'hello'</span>        <span class=\"token comment\">// implicit due to logical operator</span></code></pre>\n<p>除了下面列出的值为false, 其余的都为true</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token string\">''</span><span class=\"token punctuation\">)</span>         <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">)</span>          <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token operator\">-</span><span class=\"token number\">0</span><span class=\"token punctuation\">)</span>         <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token number\">NaN</span><span class=\"token punctuation\">)</span>        <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span>       <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span>undefined<span class=\"token punctuation\">)</span>  <span class=\"token comment\">// false</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span>      <span class=\"token comment\">// false</span></code></pre>\n<p>所以除了它以外的都是true</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>             <span class=\"token comment\">// true</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">)</span>             <span class=\"token comment\">// true</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token function\">Symbol</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">)</span>       <span class=\"token comment\">// true</span>\n<span class=\"token operator\">!</span><span class=\"token operator\">!</span><span class=\"token function\">Symbol</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span>              <span class=\"token comment\">// true</span>\n<span class=\"token function\">Boolean</span><span class=\"token punctuation\">(</span><span class=\"token keyword\">function</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>  <span class=\"token comment\">// true</span></code></pre>\n</li>\n<li><p>to number</p>\n<p>进行 to number 的隐式转换比较多，下面列一下可能会发生的情况：</p>\n<ul>\n<li>比较运算 (&gt;, &lt;, &lt;=, &gt;=)</li>\n<li>按位运算 (|, &amp;, ^, ~)</li>\n<li>算术运算（- + * / %）</li>\n<li>== 和 !=</li>\n<li>一元运算 +</li>\n</ul>\n<p>注意当 == 的左右都是字符串时，不会进行to number的隐式转换</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>                    <span class=\"token comment\">//0</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span>undefined<span class=\"token punctuation\">)</span>              <span class=\"token comment\">// NaN</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>                    <span class=\"token comment\">// NaN</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span>                   <span class=\"token comment\">// 0</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token boolean\">true</span><span class=\"token punctuation\">)</span>                   <span class=\"token comment\">// 1</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>                 <span class=\"token comment\">//0</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token string\">\" 12 \"</span><span class=\"token punctuation\">)</span>                 <span class=\"token comment\">// 12</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token string\">\"-12.34\"</span><span class=\"token punctuation\">)</span>               <span class=\"token comment\">// -12.34</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token string\">\"\\n\"</span><span class=\"token punctuation\">)</span>                   <span class=\"token comment\">// 0</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token string\">\" 12s \"</span><span class=\"token punctuation\">)</span>                <span class=\"token comment\">// NaN</span>\n<span class=\"token function\">Number</span><span class=\"token punctuation\">(</span><span class=\"token number\">123</span><span class=\"token punctuation\">)</span>                    <span class=\"token comment\">// 123</span></code></pre>\n</li>\n<li><p>当用 == 和 <code>null</code> 或者 <code>undeinfed</code> 进行运算时，是不会发生numeric 转换的。 <code>null</code>只==<code>null</code>或者<code>undefined</code>!</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token keyword\">null</span> <span class=\"token operator\">==</span> <span class=\"token number\">0</span>               <span class=\"token comment\">// false</span>\n<span class=\"token keyword\">null</span> <span class=\"token operator\">==</span> <span class=\"token keyword\">null</span>            <span class=\"token comment\">// true</span>\nundefined <span class=\"token operator\">==</span> undefined  <span class=\"token comment\">// true</span>\n<span class=\"token keyword\">null</span> <span class=\"token operator\">==</span> undefined       <span class=\"token comment\">// true</span></code></pre>\n</li>\n<li><p>NaN 和谁都不相等，包括它自己!</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token number\">NaN</span> <span class=\"token operator\">==</span> <span class=\"token number\">NaN</span>              <span class=\"token comment\">// false</span></code></pre>\n</li>\n</ol>\n<p>根据上面的规则，测试一下:</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token string\">'true'</span> <span class=\"token operator\">==</span> <span class=\"token boolean\">true</span> <span class=\"token comment\">// false 因为Number('true')是 NaN; Number(true) 是1</span>\n\n<span class=\"token comment\">// 某面试题</span>\nconsole<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">)</span><span class=\"token operator\">?</span><span class=\"token boolean\">true</span><span class=\"token punctuation\">:</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>  <span class=\"token comment\">// Boolean([]) = true</span>\nconsole<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">==</span> <span class=\"token boolean\">false</span><span class=\"token operator\">?</span><span class=\"token boolean\">true</span><span class=\"token punctuation\">:</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// Number([]) = 0 所以为true</span></code></pre>\n<h2>对象的类型转换</h2>\n<p>对象的类型转换分为下面四步</p>\n<ol>\n<li>如果已经是原始类型，直接返回</li>\n<li>调用 <code>input.toString()</code> 方法，如果是原始类型, 返回</li>\n<li>调用 <code>input.valueOf()</code>, 如果是原始类型, 返回</li>\n<li>如果调用 <code>input.toString()</code> 和 <code>input.valueOf()</code> 返回都不是原始类型，抛出类型错误</li>\n</ol>\n<p>举个例子：</p>\n<pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token punctuation\">[</span><span class=\"token number\">1</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">></span> <span class=\"token keyword\">null</span>\n<span class=\"token comment\">// [1].toString() = '1'</span>\n<span class=\"token comment\">// '1' > null</span>\n<span class=\"token comment\">// 原始类型比较进入Number('1') > Number(null)</span>\n<span class=\"token comment\">// 1 > 0</span>\n<span class=\"token comment\">// 所以为true</span>\n\n<span class=\"token comment\">// 再看一个面试题</span>\nconsole<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span> <span class=\"token operator\">==</span> <span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span><span class=\"token operator\">?</span><span class=\"token boolean\">true</span><span class=\"token punctuation\">:</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token comment\">// {}.toString() \"[object Object]\"; 返回类型字符串</span>\n<span class=\"token comment\">// Number(\"[object Object]\") NaN</span>\n<span class=\"token comment\">// Number(false) 0</span>\n<span class=\"token comment\">// 所以为false</span></code></pre>\n"
     }, {
       "question": "=== 和 == 有什么区别，什么时候使用 ==？",
       "question_body": "",
@@ -11918,7 +11490,7 @@ module.exports = [{
   "icon": "smile",
   "id": "6080decf"
 }];
-},{}],"pages/Categories.vue":[function(require,module,exports) {
+},{}],"ezLQ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11963,22 +11535,8 @@ exports.default = _default;
     
         /* template */
         Object.assign($68ad0a, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "categories" }, [
-    _c(
-      "div",
-      _vm._l(_vm.pages, function(page, page_index) {
-        return _c("Category", { attrs: { page: page } })
-      }),
-      1
-    )
-  ])
-}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"categories"},[_c('div',_vm._l((_vm.pages),function(page,page_index){return _c('Category',{attrs:{"page":page}})}),1)])}
 var staticRenderFns = []
-render._withStripped = true
 
           return {
             render: render,
@@ -11989,28 +11547,7 @@ render._withStripped = true
           };
         })());
       
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$68ad0a', $68ad0a);
-          } else {
-            api.reload('$68ad0a', $68ad0a);
-          }
-        }
-
-        
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-      }
-    })();
-},{"../components/Category":"components/Category.vue","../data.json":"data.json","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"pages/Questions.vue":[function(require,module,exports) {
+},{"../components/Category":"TU+R","../data.json":"7boC"}],"reR6":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12088,61 +11625,8 @@ exports.default = _default;
     
         /* template */
         Object.assign($8a1de4, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "questions" }, [
-    _c("div", { staticClass: "questions__head" }, [
-      _c("div", { staticClass: "questions__back", on: { click: _vm.onHome } }, [
-        _c("i", { staticClass: "iconfont icon-back" })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "questions__title" }, [
-        _vm._v(_vm._s(_vm.title))
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "questions__body" },
-      _vm._l(_vm.questions, function(question, i) {
-        return _c("div", { staticClass: "question" }, [
-          _c(
-            "div",
-            {
-              ref: "fullscreen_" + i,
-              refInFor: true,
-              staticClass: "question__fullscreenroot"
-            },
-            [
-              _c("div", { staticClass: "question__head" }, [
-                _c("h1", { staticClass: "question__question" }, [
-                  _vm._v(_vm._s(question.question))
-                ]),
-                _vm._v(" "),
-                _c("div")
-              ]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "question__body",
-                domProps: { innerHTML: _vm._s(question.question_body) }
-              })
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "question__answer",
-            domProps: { innerHTML: _vm._s(question.answer) }
-          })
-        ])
-      }),
-      0
-    )
-  ])
-}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"questions"},[_c('div',{staticClass:"questions__head"},[_c('div',{staticClass:"questions__back",on:{"click":_vm.onHome}},[_c('i',{staticClass:"iconfont icon-back"})]),_vm._v(" "),_c('div',{staticClass:"questions__title"},[_vm._v(_vm._s(_vm.title))])]),_vm._v(" "),_c('div',{staticClass:"questions__body"},_vm._l((_vm.questions),function(question,i){return _c('div',{staticClass:"question"},[_c('div',{ref:'fullscreen_' + i,refInFor:true,staticClass:"question__fullscreenroot"},[_c('div',{staticClass:"question__head"},[_c('h1',{staticClass:"question__question"},[_vm._v(_vm._s(question.question))]),_vm._v(" "),_c('div')]),_vm._v(" "),_c('div',{staticClass:"question__body",domProps:{"innerHTML":_vm._s(question.question_body)}})]),_vm._v(" "),_c('div',{staticClass:"question__answer",domProps:{"innerHTML":_vm._s(question.answer)}})])}),0)])}
 var staticRenderFns = []
-render._withStripped = true
 
           return {
             render: render,
@@ -12153,33 +11637,7 @@ render._withStripped = true
           };
         })());
       
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$8a1de4', $8a1de4);
-          } else {
-            api.reload('$8a1de4', $8a1de4);
-          }
-        }
-
-        
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-      }
-    })();
-},{"../data.json":"data.json","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"css/global.less":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"../data.json":"7boC"}],"Focm":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -12222,174 +11680,5 @@ var app = new _vue.default({
     return h("router-view");
   }
 });
-},{"vue":"../node_modules/vue/dist/vue.runtime.esm.js","vue-router":"../node_modules/vue-router/dist/vue-router.esm.js","prismjs/themes/prism-tomorrow.css":"../../node_modules/prismjs/themes/prism-tomorrow.css","./pages/Home":"pages/Home.vue","./pages/Categories":"pages/Categories.vue","./pages/Questions":"pages/Questions.vue","./css/global.less":"css/global.less"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
-var global = arguments[3];
-var OVERLAY_ID = '__parcel__error__overlay__';
-var OldModule = module.bundle.Module;
-
-function Module(moduleName) {
-  OldModule.call(this, moduleName);
-  this.hot = {
-    data: module.bundle.hotData,
-    _acceptCallbacks: [],
-    _disposeCallbacks: [],
-    accept: function (fn) {
-      this._acceptCallbacks.push(fn || function () {});
-    },
-    dispose: function (fn) {
-      this._disposeCallbacks.push(fn);
-    }
-  };
-  module.bundle.hotData = null;
-}
-
-module.bundle.Module = Module;
-var parent = module.bundle.parent;
-
-if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = "" || location.hostname;
-  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62498" + '/');
-
-  ws.onmessage = function (event) {
-    var data = JSON.parse(event.data);
-
-    if (data.type === 'update') {
-      console.clear();
-      data.assets.forEach(function (asset) {
-        hmrApply(global.parcelRequire, asset);
-      });
-      data.assets.forEach(function (asset) {
-        if (!asset.isNew) {
-          hmrAccept(global.parcelRequire, asset.id);
-        }
-      });
-    }
-
-    if (data.type === 'reload') {
-      ws.close();
-
-      ws.onclose = function () {
-        location.reload();
-      };
-    }
-
-    if (data.type === 'error-resolved') {
-      console.log('[parcel] ✨ Error resolved');
-      removeErrorOverlay();
-    }
-
-    if (data.type === 'error') {
-      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
-      removeErrorOverlay();
-      var overlay = createErrorOverlay(data);
-      document.body.appendChild(overlay);
-    }
-  };
-}
-
-function removeErrorOverlay() {
-  var overlay = document.getElementById(OVERLAY_ID);
-
-  if (overlay) {
-    overlay.remove();
-  }
-}
-
-function createErrorOverlay(data) {
-  var overlay = document.createElement('div');
-  overlay.id = OVERLAY_ID; // html encode message and stack trace
-
-  var message = document.createElement('div');
-  var stackTrace = document.createElement('pre');
-  message.innerText = data.error.message;
-  stackTrace.innerText = data.error.stack;
-  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
-  return overlay;
-}
-
-function getParents(bundle, id) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return [];
-  }
-
-  var parents = [];
-  var k, d, dep;
-
-  for (k in modules) {
-    for (d in modules[k][1]) {
-      dep = modules[k][1][d];
-
-      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
-        parents.push(k);
-      }
-    }
-  }
-
-  if (bundle.parent) {
-    parents = parents.concat(getParents(bundle.parent, id));
-  }
-
-  return parents;
-}
-
-function hmrApply(bundle, asset) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return;
-  }
-
-  if (modules[asset.id] || !bundle.parent) {
-    var fn = new Function('require', 'module', 'exports', asset.generated.js);
-    asset.isNew = !modules[asset.id];
-    modules[asset.id] = [fn, asset.deps];
-  } else if (bundle.parent) {
-    hmrApply(bundle.parent, asset);
-  }
-}
-
-function hmrAccept(bundle, id) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return;
-  }
-
-  if (!modules[id] && bundle.parent) {
-    return hmrAccept(bundle.parent, id);
-  }
-
-  var cached = bundle.cache[id];
-  bundle.hotData = {};
-
-  if (cached) {
-    cached.hot.data = bundle.hotData;
-  }
-
-  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
-    cached.hot._disposeCallbacks.forEach(function (cb) {
-      cb(bundle.hotData);
-    });
-  }
-
-  delete bundle.cache[id];
-  bundle(id);
-  cached = bundle.cache[id];
-
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    cached.hot._acceptCallbacks.forEach(function (cb) {
-      cb();
-    });
-
-    return true;
-  }
-
-  return getParents(global.parcelRequire, id).some(function (id) {
-    return hmrAccept(global.parcelRequire, id);
-  });
-}
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/src.e31bb0bc.map
+},{"vue":"QPfz","vue-router":"7ov2","prismjs/themes/prism-tomorrow.css":"WdpE","./pages/Home":"+lUt","./pages/Categories":"ezLQ","./pages/Questions":"reR6","./css/global.less":"WdpE"}]},{},["Focm"], null)
+//# sourceMappingURL=src.c55ff0c2.map
