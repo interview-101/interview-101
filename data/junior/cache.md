@@ -76,13 +76,18 @@ Cache from Disk 才是我们平时提到的 HTTP Cache；
 - js/css - Cache-Control: max-age=31536000
 - image - Cache-Control: max-age=86400
 
-# Cache-Control 默认值/行为
+# 不设置 Cache-Control / Expires 会发生什么？
 
 > Unless specifically constrained by a cache-control directive, a caching system MAY always store a successful response
 
-如果没有设置Cache-Control，根据规范，浏览器可能会缓存，也可能不会
+如果响应没有设置 Cache-Control，缓存系统 **可以** 对一个成功的响应进行存储
 
-> 参考 [Caching in HTTP](https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html)
+所以根据规范，浏览器可能会缓存，也可能不会
+
+> 参考资料：
+> 1. [Caching in HTTP](https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html)
+> 2. [吐槽 chrome 的 200 from memory cache 缓存](https://www.v2ex.com/t/356353)
+> 3. [What happens if you don't set cache-control header?](https://webmasters.stackexchange.com/questions/111298/what-happens-if-you-dont-set-cache-control-header)
 
 # Cache-Control max-age=0 和 no-cache 的关系
 
@@ -96,5 +101,5 @@ https://developers.google.com/web/fundamentals/performance/optimizing-content-ef
 https://github.com/easonyq/easonyq.github.io/blob/master/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/others/cache.md
 https://tools.ietf.org/html/rfc7234#section-5.2.1
 https://jakearchibald.com/2016/caching-best-practices/?utm_campaign=chrome_series_catchingbestpractices_072717&utm_source=chromedev&utm_medium=yt-desc
-https://www.v2ex.com/t/356353
+
 -->
