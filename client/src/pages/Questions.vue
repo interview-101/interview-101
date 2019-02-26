@@ -4,7 +4,7 @@
       <div class="questions__back" @click="onHome">
         <i class="iconfont icon-back"></i>
       </div>
-      <h3 class="questions__title">{{ title }}</h3>
+      <div class="questions__title">{{ title }}</div>
     </div>
     <div class="questions__body">
       <div
@@ -13,7 +13,7 @@
       >
         <div class="question__fullscreenroot" :ref="'fullscreen_' + i">
           <div class="question__head">
-            <div class="question__question">{{ question.question }}</div>
+            <h1 class="question__question">{{ question.question }}</h1>
             <div>
 
             </div>
@@ -68,6 +68,7 @@ export default {
     &__head {
       position: sticky;
       top: 0;
+      height: 64px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -86,10 +87,12 @@ export default {
 
     &__title {
       margin-right: 30px;
+      font-weight: bold;
+      font-size: 19px;
     }
 
     &__body {
-      padding: 30px;
+      padding: 0 30px 30px;
     }
   }
 
@@ -98,8 +101,6 @@ export default {
     padding: 20px 0;
 
     &__head {
-      font-weight: 600;
-      font-size: 17px;
       display: flex;
       align-items: center;
       justify-content: space-between;

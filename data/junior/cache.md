@@ -8,11 +8,13 @@
 
 按失效策略分：
 
-- 强缓存
-    - 用Cache-Control, Expires headers来控制，特点是如果设置了对应的缓存时间，在该时间内不会发任何请求到服务器。
+- 强制缓存
+
+  用 Cache-Control, Expires headers 来控制，特点是如果设置了对应的缓存时间，在该时间内不会发任何请求到服务器。
 
 - 协商缓存
-    - 用ETag, Last-Modified, If-None-Match headers来控制，特点是会先发一个请求给服务器验证缓存是否有效。
+
+  用 ETag, Last-Modified, If-None-Match headers 来控制，特点是会先发一个请求给服务器验证缓存是否有效。
 
 # 缓存查找的顺序
 
@@ -60,9 +62,9 @@ Cache from Disk 才是我们平时提到的 HTTP Cache；
 
   资源更新检查
 
-  第一次浏览器会拿到ETag，如果缓存过期，会在`If-None-Match`的header带上ETag的值，和服务器确认资源是否发生变化，如果未发生变化，服务器会响应`304 Not Modified`，可以再延用max-age时间的缓存
+  第一次浏览器会拿到 ETag，如果缓存过期，会在 `If-None-Match` 的 header 带上 ETag 的值，和服务器确认资源是否发生变化，如果未发生变化，服务器会响应 `304 Not Modified`，可以再延用 max-age 时间的缓存
 
-  我们要做的是确保服务端返回ETag header，后续的事情浏览器会替我们完成
+  我们要做的是确保服务端返回 ETag header，后续的事情浏览器会替我们完成
 
 # 如何让客户端更新被缓存的资源？
 
@@ -76,21 +78,22 @@ Cache from Disk 才是我们平时提到的 HTTP Cache；
 
 # Cache-Control 默认值/行为
 
-TODO
+> Unless specifically constrained by a cache-control directive, a caching system MAY always store a successful response
 
-如果没有设置Cache-Control，根据规范，浏览器可能会缓存也可能不会
+如果没有设置Cache-Control，根据规范，浏览器可能会缓存，也可能不会
 
-> Unless specifically constrained by a cache-control 
- directive, a caching system MAY always store a successful response 
+> 参考 [Caching in HTTP](https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html)
 
 # Cache-Control max-age=0 和 no-cache 的关系
 
-no-cache 等价于 max-age=0, must-revalidate, 意思是no-cache并不意味着不缓存，而是意味着在使用缓存之前一定要进行验证。
+no-cache 等价于 max-age=0, must-revalidate
+
+no-cache 并不意味着不缓存，而是在使用缓存之前一定要进行验证。
 
 <!--
 参考：
 https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching
-https://mp.weixin.qq.com/s/cUqkG3NETmJbglDXfSf0tg
+https://github.com/easonyq/easonyq.github.io/blob/master/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/others/cache.md
 https://tools.ietf.org/html/rfc7234#section-5.2.1
 https://jakearchibald.com/2016/caching-best-practices/?utm_campaign=chrome_series_catchingbestpractices_072717&utm_source=chromedev&utm_medium=yt-desc
 https://www.v2ex.com/t/356353

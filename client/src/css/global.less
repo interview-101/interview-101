@@ -120,25 +120,30 @@ img {
   max-width: 100%;
 }
 
+ul, ol {
+  margin: 5px 0;
+}
+
 ul {
   padding-left: 30px;
 }
 
-ul li {
+ul > li {
   list-style-type: square;
 }
 
 ol {
   list-style: none;
   counter-reset: counter;
-  padding-left: 10px;
+  padding-left: 25px;
 }
 
-ol li {
+ol > li {
+  position: relative;
   counter-increment: counter;
 }
 
-ol li::before {
+ol > li::before {
   content: counter(counter);
   font-weight: bold;
   margin-right: 10px;
@@ -151,6 +156,9 @@ ol li::before {
   color: #fff;
   display: inline-block;
   font-size: 11px;
+  position: absolute;
+  left: -25px;
+  top: 6px;
 }
 
 blockquote {
@@ -159,6 +167,21 @@ blockquote {
   padding-left: 15px;
   background-color: #f8f8f8;
   padding: 5px 15px;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+h3, h4, h5, h6 {
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .iconfont {

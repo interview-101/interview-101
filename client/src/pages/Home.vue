@@ -2,7 +2,7 @@
   <div class="home">
     <div class="content">
       <div class="logo">
-        <img src="https://i.imgur.com/rQ69ix5.png" alt="">
+        <img :src="logo" alt="">
         <div class="name">Interview 101</div>
       </div>
 
@@ -15,7 +15,15 @@
 </template>
 
 <script>
+import logo from '../media/logo.png'
+
 export default {
+  data() {
+    return {
+      logo
+    }
+  },
+
   methods: {
     onLucky() {
       console.log( 'TODO: popup a question' )
@@ -64,6 +72,7 @@ export default {
 
   .logo {
     width: 190px;
+    height: 190px;
     transition: transform .3s ease;
     text-align: center;
 

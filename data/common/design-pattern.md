@@ -24,7 +24,7 @@
 +-----------+               +---------------+   Subscribe  +------------+
 ```
 
-参考：[https://www.zhihu.com/question/23486749](https://www.zhihu.com/question/23486749)
+> 参考 [https://www.zhihu.com/question/23486749](https://www.zhihu.com/question/23486749)
 
 # 用代码实现发布订阅模式
 

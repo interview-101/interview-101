@@ -16,17 +16,15 @@
 
 # class 或 id 大小写敏感么？
 
-敏感，但是 css 本身是大小写不敏感的，比如你可以这么写
+[选择器本身是大小写不敏感的](https://www.w3.org/TR/selectors-4/#case-sensitive)，class和id是否大小写敏感，[取决于宿主语言](https://www.w3.org/TR/html50/disabled-elements.html#case-sensitivity)
+
+CSS 本身是大小写不敏感的，所以以下写法是等价的
 
 ```css
 .klass {
   Color: RED;
 }
-```
 
-和下面是等价的
-
-```css
 .klass {
   color: red;
 }
