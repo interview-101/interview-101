@@ -120,15 +120,15 @@ Object.prototype.toString.call()
   NaN == NaN              // false
   ```
 
-  根据上面的规则，测试一下:
+根据上面的规则，测试一下:
 
-  ```javascript
-  'true' == true // false 因为Number('true')是 NaN; Number(true) 是1
+```javascript
+'true' == true // false 因为Number('true')是 NaN; Number(true) 是1
 
-  // 某面试题
-  console.log(([])?true:false);  // Boolean([]) = true
-  console.log(([] == false?true:false)); // Number([]) = 0 所以为true
-  ```
+// 某面试题
+console.log(([])?true:false);  // Boolean([]) = true
+console.log(([] == false?true:false)); // Number([]) = 0 所以为true
+```
 
 ## 对象的类型转换
 
