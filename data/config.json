@@ -39,7 +39,7 @@
       },
       {
         "name": "Web 存储",
-        "file": "junior/web_storage.md"
+        "file": "junior/web-storage.md"
       },
       {
         "name": "浏览器缓存",
@@ -56,6 +56,10 @@
       {
         "name": "事件循环",
         "file": "junior/event-loop.md"
+      },
+      {
+        "name": "手写代码",
+        "file": "common/hand-writing.md"
       }
     ]
   },
@@ -91,7 +95,7 @@
     "icon": "bulb"
   },
   {
-    "name": "问题解决能力",
+    "name": "问题解决",
     "icon": "thunderbolt"
   },
   {

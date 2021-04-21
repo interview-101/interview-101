@@ -1,65 +1,135 @@
+# 301 和 302
+
+- 301 永久重定向，资源永久转移，比如更换了域名
+- 302 临时重定向，比如登录后的临时跳转
+
+# 401 和 403
+
+- 401 Unauthorized 表示未登录认证（潜台词：希望客户端携带凭证再次访问）
+- 403 Forbidden 没有权限，拒绝执行（潜台词：就是没有权限，不是技术上能解决的，不要再请求该资源）
+
+# 使用 301 强制 https 存在什么问题？有更好的方案吗
+
+使用 301 重定向，第一次请求仍然是 http 的，仍然存在被攻击的风险
+
+# TCP 和 UDP 的区别
+
+- TCP 面向字节流
+- UDP 面向报文
+
+# TCP 协议中的序列号有什么用
+
+丢失重发 & 去重 & 排序
+
+# TCP 粘包问题
+
 # TCP 建立连接 为什么是三次握手？
 
-第一次：client -> server，你能收到我的消息吗？
+**三次是建立相对可靠连接的最小次数，两次不够，四次多余**。其实无论多少次握手，信道都**不是完全可靠**的（参考两军问题），三次握手只是保证了信道最基本的**"可用性"，双方能收能发**
 
-第二次：client <- server，能收到，你能收到我的消息吗？
+建连过程将最终的控制权交给了发送方，原因在于网络是分布式的，没有绑定一个全局时钟来生成序列号，所以只有发送方才知道某个 序列号 是否过期，需要由发送方来验证，再通过 ACK 确认建立连接或者 RST 中止连接
 
-第三次：client -> server，我也能收到你的消息
+# TCP 建立连接时，三次握手做了什么事情
 
-信道不可靠，至少需要三次握手来确保信道是**"可用的"**，**确保双方能收能发**
+1. 确认了**双方能收能发**，信道相对可靠
+2. **交换**了彼此的**初始序列号** ISN
 
+```
+TCP A                                                TCP B
 
-## 为什么一定要三次握手？两次握手就不行呢？为什么三次就是可靠的呢？
-![](https://haitao.nos.netease.com/e01a894b-c39d-44aa-af6c-274182db37c6_822_424.png)
+1.  CLOSED                                               LISTEN
 
-假设客户端与服务端直接只有两次握手，客户端第一次发送连接的请求因为网络原因在网络结点中发生了滞留（没有丢失）；此时客户端因为没有收到确认报文，又发了第二个连接的请求（syn），此时服务端发送了（ack+syn）表回复确认收到；如果是两次，此时开始传输数据，数据发送完关闭连接。  
+2.  SYN-SENT    --> <SEQ=100><CTL=SYN>               --> SYN-RECEIVED
 
-此时网络通畅了，第一个滞留的请求到了服务端，服务端进行了回复（ack+syn），如果只有两次握手的话，又开始了客户端和服务端之间的连接建立，但这是没必要的，造成了错误与浪费。  
+3.  ESTABLISHED <-- <SEQ=300><ACK=101><CTL=SYN,ACK>  <-- SYN-RECEIVED
 
-所以如果有三次握手的话，就算服务端发出了收到的确认回复，客户端也不会再发出ack的确认标记，服务端就知道原来客户端没有要建立连接，所以之前滞留的请求就不会再创建连接了，也就避免了资源浪费。
+4.  ESTABLISHED --> <SEQ=101><ACK=301><CTL=ACK>       --> ESTABLISHED
 
+5.  ESTABLISHED --> <SEQ=101><ACK=301><CTL=ACK><DATA> --> ESTABLISHED
 
-# TCP 释放连接 为什么是四次挥手
+      Basic 3-Way Handshake for Connection Synchronization
+```
 
-前两次用来释放 client -> server 方向的连接
+> 示意图来自：
+[RFC 793 - TCP](https://tools.ietf.org/html/rfc793#section-3.4)
 
-后两次用来释放 client <- server 方向的连接
+# TCP 建立连接，如果使用两次握手，会有什么问题？
 
-## 为什么是四次挥手？多了的一次挥手相比于握手多在了哪里呢？
-![](https://haitao.nos.netease.com/18d1353c-b18a-4bc8-9ae6-eb7ff67e34dd_797_473.png)
+1. 首先两次握手，**只能保证 Sender -> Receiver 的单向传输可用**，Receiver -> Sender 方向传输可靠性仍是未知的
+2. 其次，网络是不稳定的，**SYN 传输可能存在延迟和超时重发**，如果没有来自 Sender 的确认，可能会导致 Receiver 创建不必要的连接，造成资源浪费
 
-先看下过程
+# TCP 和两军问题
+
+关于两军问题，可以网上搜一下。这个问题的直接原因在于，最后一次派遣 通信兵 的军队，都无法确认消息是否送达
+
+# TCP 释放连接，为什么是四次挥手？为什么比建立连接的三次，多了一次
+
+简言之，建立连接其实也可以是四次，只不过第二次和第三次可以合并，最终变成了三次。
+而在挥手过程中，第二次和第三次无法合并，因为 Receiver 端存在一个半关闭状态，此时先回复了 ACK ，直到 Receiver 数据发送完毕，才会发送 FIN
+
+看下过程
 * step1:
-  客户端向服务端发出 FIN+seq 标记，表示客户端要主动关闭连接，停止发送数据
+  Sender向Receiver发出 FIN+SEQ 标记，表示Sender要主动关闭连接，停止发送数据
 * step2:
-  服务端发出 ACK + seq标记，发出确认回复的报文，此时，服务端进入**半关闭状态**（客户端已经没有数据发出了，但服务端若发出数据，客户端要接收）**因为此时服务端的数据不一定完全发送完了**
+  Receiver发出 ACK + SEQ 标记，发出确认回复，此时，Receiver进入**半关闭状态**（Sender已经没有数据发出了，但Receiver若发出数据，Sender要接收）**因为此时Receiver的数据不一定完全发送完了**
 * step3:
-  服务端最后的数据发送完了，就像客户端发送FIN+ACK 连接释放的报文, 服务器此时进入了等待客户端最后确认的状态
+  Receiver最后的数据发送完了，就向Sender发送 FIN+ACK 连接释放, 服务器此时进入了等待Sender最后确认的状态
 * step4:
-  客户端收到服务端连接释放的报文后，发出ACK+seq表示确认，服务器收到了客户端发出的确认报文猴就立即进入了closed状态
+  Sender收到Receiver连接释放后，发出 ACK + SEQ 表示确认，服务器收到了Sender发出的确认后就立即进入了closed状态
 
-所以可以看出，挥手多的一个步骤是在step3, ACK 和 FIN 在服务端分成了2步发出，如果服务端再收到客户端发来的FIN报文后，如果没有数据传输了，那么FIN+ACK是可以合并的
+所以可以看出，挥手多的一个步骤是在 step3, ACK 和 FIN 在 Receiver 分成了 2 步发出，如果 Receiver 再收到 Sender 发来的 FIN 后，如果没有数据传输了，那么 FIN+ACK 是可以合并的
 
 > 参考资料：
 > 1. [TCP的三次握手与四次挥手](https://blog.csdn.net/qzcsu/article/details/72861891)
 > 2. [《图解http》](https://www.amazon.cn/dp/B00JTQK1L4)
 > 3. [cs50-tcp](https://www.youtube.com/watch?v=GP7uvI_6uas&t=1s)
 > 4. [cs50-http](https://www.youtube.com/watch?v=4axL8Gfw2nI)
-
+> 5. [TCP 为什么是三次握手，而不是两次或四次？](https://www.zhihu.com/question/24853633)
+> 5. [为什么 TCP 建立连接需要三次握手](https://draveness.me/whys-the-design-tcp-three-way-handshake/)
 
 # 介绍下 HTTP/2 的一些新特性
 
-- 采用了二进制格式传输数据（相比 HTTP/1.x 的文本格式）
+- 二进制分帧（HTTP/1.1 中，头信息是文本格式，数据体可以是文本，也可以是二进制，而到了 HTTP/2，头信息和数据体都采用了二进制格式，统称为帧：头信息帧和数据帧）
 - 多路复用
 - header 压缩
 - 服务器推送
+- ...
 
-# HTTP/2 多路复用？
+> 参考
+> 1. [HTTP/1.0、HTTP/1.1、HTTP/2、HTTPS](https://zhuanlan.zhihu.com/p/43787334)
+> 2. [Introduction to HTTP/2](https://developers.google.com/web/fundamentals/performance/http2)
+
+# 介绍下 HTTP/2 的头部压缩技术
+
+在 HTTP/1 中，一般只有消息主体会经过压缩（ 比如 gzip ），但是状态行和头部没有经过任何压缩
+HTTP/2 针对每个 TCP 连接，会在客户端和服务端维护一份静态字典、动态字典，加上哈弗曼编码，来对头部进行压缩，这种压缩格式简称 HPACK
+
+> 参考资料：
+> 1. [HTTP/2 头部压缩技术介绍](https://imququ.com/post/header-compression-in-http2.html)
+> 2. [HPACK - Header Compression for HTTP/2 draft-ietf-httpbis-header-compression-12](https://tools.ietf.org/html/draft-ietf-httpbis-header-compression-12)
+
+# 介绍下 HTTP/2 多路复用？
 
 同一个域名下，多个请求可以复用同一个 TCP 连接
 
-# HTTP/2 服务器推送（Server Push）？
+# 为什么 HTTP/1.x 无法多路复用，而 HTTP/2 可以？
 
-服务器发送 HTML 后，需要等待浏览器解析 HTML 后发起内嵌资源的请求，才会响应 JavaScript、CSS、images 等资源，Server Push 允许服务器提前推送这些资源到浏览器的缓存中，消除了中间的等待时间
+因为 HTTP/1.x 交付模型保证每个连接每次只交付一个响应（响应排队），而在 HTTP/2 引入了二进制分帧机制后，突破了这个限制，不再依赖并发 TCP 连接来提升性能，每个数据流都可以拆成帧，并且这些帧可以交错发送，并在另一端重组
+
+> 参考：
+> 1. [Request and response multiplexing](https://developers.google.com/web/fundamentals/performance/http2#request_and_response_multiplexing)
+
+# HTTP/2 哪些情况会复用连接
+
+1. 同一个域名下的资源
+2. 不同域名下的资源，需满足两个条件：域名解析到同一个 IP、使用同一个证书
+
+# 介绍下 HTTP/2 服务器推送（Server Push）
+
+服务器发送 HTML 后，需要等待浏览器解析 HTML 后发起内嵌资源的请求，才会响应 JavaScript、CSS、images 等资源，Server Push 允许服务器提前推送这些资源到浏览器(浏览器可以选择拒绝，比如已有缓存的情况)，消除了中间的等待时间
 
 > 参考 [HTTP/2 FAQ](https://http2.github.io/faq/)
+
+# 什么是队首阻塞
+
+> 参考 [关于队头阻塞（Head-of-Line blocking），看这一篇就足够了](https://zhuanlan.zhihu.com/p/330300133)

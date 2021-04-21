@@ -34,6 +34,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px 0;
+    padding: 15px 0 50px;
   }
 </style>

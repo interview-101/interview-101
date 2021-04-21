@@ -1,4 +1,5 @@
 node_modules
+.parcel-cache
 /.git
 yarn-error.log
 .cache

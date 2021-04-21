@@ -14,13 +14,19 @@
  - `>`
  - (space)
 
+# 如何隐藏一个元素
+
+1. display: none;
+2. visibility: hidden;
+3. opacity: 0;
+
 # class 或 id 大小写敏感么？
 
 [选择器本身是大小写不敏感的](https://www.w3.org/TR/selectors-4/#case-sensitive)，class和id是否大小写敏感，[取决于宿主语言](https://www.w3.org/TR/html50/disabled-elements.html#case-sensitivity)
 
 > The Selectors specification leaves the case-sensitivity of IDs, classes, element names, attribute names, and attribute values to be defined by the host language. [SELECTORS]
 
-> The unique identifier of HTML elements in documents that are in quirks mode must be treated as ASCII case-insensitive for the purposes of selector matching.
+> The unique identifier of HTML elements in documents that are in quirks mode must be treated as ASCII `case-insensitive` for the purposes of selector matching.
 
 > Classes from the class attribute of HTML elements in documents that are in quirks mode must be treated as ASCII case-insensitive for the purposes of selector matching.
 
@@ -70,6 +76,8 @@ CSS 本身是大小写不敏感的，以下写法是等价的
 red
 ```
 
+解析：css 中后面定义的样式优先级更高
+
 **题二**
 
 ```html
@@ -95,5 +103,78 @@ html h1 {
 purple
 ```
 
+解析：css 中权重相同的情况下，后定义的样式优先级更高；body h1 和 html h1 优先级相同，后面的覆盖前面的
 
-### 如何实现一个元素水平和垂直居中
+**题三**
+
+```html
+<html>
+<body id="parent">
+  <h1 id="child">Here is a title!</h1>
+</body>
+</html>
+```
+
+```css
+#parent {
+  color: green;
+}
+
+#child {
+  color: purple;
+}
+```
+
+最终 h1 的颜色是什么？
+
+```
+purple
+```
+
+解析：继承的样式优先级不如自身定义的样式优先级高
+
+# 如何实现一个元素水平和垂直居中
+
+1. 定位
+
+```css
+.parent {
+  position: relative;
+}
+.child {
+  display: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%,0);
+}
+```
+
+2. flex
+
+```css
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+# 使用 CSS 实现一个三角
+
+```css
+.triangle {
+  width: 0;
+  height: 0;
+  border-top: solid 0 transparent;
+  border-left: solid 10px transparent;
+  border-right: solid 10px transparent;
+  border-bottom: solid 10px #000;
+}
+```
+
+# 如何触发 CSS 硬件加速( GPU渲染 )
+
+1. transform: translateZ(0);
+3. will-change: transform;
+
+注：滥用硬件加速也可能导致性能问题

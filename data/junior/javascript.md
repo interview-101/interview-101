@@ -1,6 +1,6 @@
-# JavaScript 中有哪些内置类型
+# JavaScript 中有哪些数据类型
 
-6大基本类型 和 对象
+7 大基本类型 和 Object
 
 # JavaScript中的基本类型
 
@@ -8,9 +8,9 @@
 - undefined
 - boolean
 - number
+- bigint
 - string
 - symbol
-- object
 
 <!--
 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B
@@ -18,9 +18,9 @@
 
 # 如何区分 JavaScript 中的几种数据类型
 
-`typeof` 可以区分除了 `null` 以外的其他类型
+`typeof` 可以区分除了 `null` 以外的其他基本类型
 
-想要区分所有基本类型可以使用
+想要区分所有类型可以使用
 
 ```javascript
 Object.prototype.toString.call()
@@ -29,10 +29,27 @@ Object.prototype.toString.call()
 - null -> [object Null]
 - undefined -> [object Undefined]
 - number -> [object Number]
+- bigint -> [object BigInt]
 - string -> [object String]
 - boolean -> [object Boolean]
 - symbol -> [object Symbol]
-- object -> [object Object] | [object Date]...
+- object -> [object Object] | [object Array] | [object RegExp] | [object Date]...
+
+# 0.1 + 0.2 !== 0.3
+
+- 问题描述：JS 中的浮点数运算精度丢失问题
+- 原因：存储空间是有限的，一些十进制小数无法使用二进制精确表示，就像十进制中的 1/3
+- 解决方案：
+
+  1. 小数运算转为整数运算 ( 0.1 * 10 + 0.2 * 10 ) / 10 === 0.3
+  2. 判断相等：Math.abs( 0.1 + 0.2 - 0.3 ) < Number.EPSILON
+  3. BigDecimal（提案中，此时是 2021.4 月）
+
+> 参考：
+> 1. [JavaScript 浮点数陷阱及解法
+](https://github.com/camsong/blog/issues/9)
+> 2. [JavaScript著名面试题: 0.1 + 0.2 !== 0.3，即将成为过去](https://zhuanlan.zhihu.com/p/225490777)
+> 3. [详解js中0.1+0.2!=0.3](https://zhuanlan.zhihu.com/p/95318421)
 
 # JavaScript 是如何做隐式类型转换的
 
@@ -174,5 +191,15 @@ https://medium.freecodecamp.org/js-type-coercion-explained-27ba3d9a2839
 2. 文章1的作者推荐了书
 https://legacy.gitbook.com/book/oshotokill/understandinges6-simplified-chinese/details
 -->
+
+# 获取函数的形参个数
+
+```js
+function fn( a, b, c ) {}
+fn.length // -> 3
+```
+
+# Promise.all、Promise.race、Promise.allSettled
+
 
 # 描述下 JavaScript 中的垃圾回收机制
