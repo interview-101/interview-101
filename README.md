@@ -16,11 +16,12 @@
   - [JavaScript 基础](https://interview.js.org/#/questions/5435aa3e/3f8bf3c8)
   - [CSS 基础](https://interview.js.org/#/questions/5435aa3e/838e3d5c)
   - [ES6+](https://interview.js.org/#/questions/5435aa3e/4887efd8)
-  - [Web 存储](https://interview.js.org/#/questions/5435aa3e/f940a8b6)
+  - [Web 存储](https://interview.js.org/#/questions/5435aa3e/6eb4c1f3)
   - [浏览器缓存](https://interview.js.org/#/questions/5435aa3e/43351373)
   - [性能优化](https://interview.js.org/#/questions/5435aa3e/a633cff6)
   - [同源策略](https://interview.js.org/#/questions/5435aa3e/d85d02fa)
   - [事件循环](https://interview.js.org/#/questions/5435aa3e/34a702fe)
+  - [手写代码](https://interview.js.org/#/questions/5435aa3e/c1a3f3d2)
 - [前端高级](https://interview.js.org)
   - [vue](https://interview.js.org/#/questions/543dc987/7388a8f0)
   - [webpack](https://interview.js.org/#/questions/543dc987/ad63f07e)
@@ -28,7 +29,7 @@
 - [NodeJS](https://interview.js.org)
 - [学习能力](https://interview.js.org)
 - [思维方式](https://interview.js.org)
-- [问题解决能力](https://interview.js.org)
+- [问题解决](https://interview.js.org)
 - [沟通能力](https://interview.js.org)
 <!-- TOC END -->
 
@@ -37,21 +38,14 @@
 Installation
 
 ```bash
-npm i
-cd client && npm i
+yarn
 ```
 
 Develop
 
 ```bash
-npm start
-# Open http://localhost:1234/
-```
-
-Deploy
-
-```bash
-npm run deploy
+nps
+# Open http://localhost:5000/
 ```
 
 ## Why

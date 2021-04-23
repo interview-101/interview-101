@@ -16,12 +16,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      logo
-    }
-  },
-
   methods: {
     onLucky() {
       console.log( 'TODO: popup a question' )
