@@ -21,5 +21,5 @@ const parseFile = require( './shared/parse-file' )
     }
   }
 
-  await fs.writeFile( path.join( cwd, 'client/src/data.json' ), JSON.stringify( pages, 0, 2 ) )
+  await fs.writeFile( path.join( cwd, 'app/src/data.json' ), JSON.stringify( pages, 0, 2 ) )
 } )()

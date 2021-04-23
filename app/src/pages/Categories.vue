@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import Category from '../components/Category'
+  import Category from '../components/Category.vue'
   import pages from '../data.json'
 
   export default {

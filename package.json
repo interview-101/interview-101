@@ -13,6 +13,9 @@
     "ann <https://github.com/AnnVoV>"
   ],
   "license": "MIT",
+  "workspaces": [
+    "app"
+  ],
   "devDependencies": {
     "gh-pages": "^2.0.1",
     "hash-sum": "^1.0.2",
@@ -21,7 +24,6 @@
     "nps": "^5.9.3",
     "nps-utils": "^1.7.0",
     "onchange": "^5.0.2",
-    "parcel": "^2.0.0-beta.2",
     "prismjs": "^1.15.0"
   }
 }

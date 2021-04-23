@@ -2,7 +2,7 @@
   <div class="home">
     <div class="content">
       <div class="logo">
-        <img :src="logo" alt="">
+        <img src="/logo.png" alt="">
         <div class="name">Interview 101</div>
       </div>
 
@@ -15,8 +15,6 @@
 </template>
 
 <script>
-import logo from '../media/logo.png'
-
 export default {
   data() {
     return {
@@ -35,7 +33,7 @@ export default {
 <style lang="less" scoped>
   .home {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #fff;
     display: flex;
     justify-content: center;

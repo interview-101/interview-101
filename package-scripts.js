@@ -3,7 +3,7 @@ const npsUtils = require( 'nps-utils' )
 module.exports = {
   scripts: {
     default: {
-      script: npsUtils.concurrent.nps( 'data.watch', 'client.watch' ),
+      script: npsUtils.concurrent.nps( 'data.watch', 'app.watch' ),
       description: 'Command for local development'
     },
 
@@ -29,16 +29,16 @@ module.exports = {
       }
     },
 
-    client: {
+    app: {
       watch: {
         default: {
-          script: 'npm run dev --prefix ./client',
+          script: 'npm run start --prefix ./app',
           description: 'Build website in development mode'
         }
       },
       build: {
         default: {
-          script: 'npm run build --prefix ./client',
+          script: 'npm run build --prefix ./app',
           description: 'Build website in production mode'
         }
       }
@@ -46,14 +46,14 @@ module.exports = {
     
     build: {
       default: {
-        script: 'nps data.build && nps client.build',
+        script: 'nps data.build && nps app.build',
         description: 'Build website'
       }
     },
 
     deploy: {
       default: {
-        script: 'cp CNAME ./client/dist/CNAME && nps build && gh-pages -d ./client/dist',
+        script: 'cp CNAME ./app/dist/CNAME && nps build && gh-pages -d ./app/dist',
         description: 'Build website and deploy to gh-pages'
       }
     }

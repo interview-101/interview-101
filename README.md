@@ -2,6 +2,8 @@
 
 # Interview 101
 
+[![github pages](https://github.com/interview-101/interview-101/actions/workflows/deploy.yml/badge.svg?branch=master)](https://github.com/interview-101/interview-101/actions/workflows/deploy.yml)
+
 ## Categories
 
 <!-- TOC START -->
