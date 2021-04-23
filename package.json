@@ -16,7 +16,7 @@
   "devDependencies": {
     "gh-pages": "^2.0.1",
     "hash-sum": "^1.0.2",
-    "marked": "^0.5.1",
+    "marked": "^0.7.0",
     "mz": "^2.7.0",
     "nps": "^5.9.3",
     "nps-utils": "^1.7.0",
