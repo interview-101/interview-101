@@ -43,10 +43,17 @@ module.exports = {
         }
       }
     },
+    
+    build: {
+      default: {
+        script: 'nps data.build && nps client.build',
+        description: 'Build website'
+      }
+    },
 
     deploy: {
       default: {
-        script: 'cp CNAME ./client/dist/CNAME && nps data.build && nps client.build && gh-pages -d ./client/dist',
+        script: 'cp CNAME ./client/dist/CNAME && nps build && gh-pages -d ./client/dist',
         description: 'Build website and deploy to gh-pages'
       }
     }
