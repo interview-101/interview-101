@@ -40,13 +40,7 @@ Installation
 
 ```bash
 yarn
-```
-
-Develop
-
-```bash
 nps
-# Open http://localhost:5000/
 ```
 
 ## Why
